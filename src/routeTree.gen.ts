@@ -9,19 +9,79 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TipsRouteImport } from './routes/tips'
+import { Route as SearchRouteImport } from './routes/search'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as ProgressRouteImport } from './routes/progress'
+import { Route as ProductivityRouteImport } from './routes/productivity'
+import { Route as PracticeRouteImport } from './routes/practice'
+import { Route as BookmarksRouteImport } from './routes/bookmarks'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LearnHtmlRouteImport } from './routes/learn.html'
+import { Route as LearnCssRouteImport } from './routes/learn.css'
 import { Route as LearnJavascriptIndexRouteImport } from './routes/learn.javascript.index'
 import { Route as LearnJavascriptSlugRouteImport } from './routes/learn.javascript.$slug'
 
+const TipsRoute = TipsRouteImport.update({
+  id: '/tips',
+  path: '/tips',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RoadmapRoute = RoadmapRouteImport.update({
   id: '/roadmap',
   path: '/roadmap',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgressRoute = ProgressRouteImport.update({
+  id: '/progress',
+  path: '/progress',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductivityRoute = ProductivityRouteImport.update({
+  id: '/productivity',
+  path: '/productivity',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PracticeRoute = PracticeRouteImport.update({
+  id: '/practice',
+  path: '/practice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookmarksRoute = BookmarksRouteImport.update({
+  id: '/bookmarks',
+  path: '/bookmarks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnHtmlRoute = LearnHtmlRouteImport.update({
+  id: '/learn/html',
+  path: '/learn/html',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnCssRoute = LearnCssRouteImport.update({
+  id: '/learn/css',
+  path: '/learn/css',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnJavascriptIndexRoute = LearnJavascriptIndexRouteImport.update({
@@ -37,45 +97,137 @@ const LearnJavascriptSlugRoute = LearnJavascriptSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/bookmarks': typeof BookmarksRoute
+  '/practice': typeof PracticeRoute
+  '/productivity': typeof ProductivityRoute
+  '/progress': typeof ProgressRoute
+  '/projects': typeof ProjectsRoute
   '/roadmap': typeof RoadmapRoute
+  '/search': typeof SearchRoute
+  '/tips': typeof TipsRoute
+  '/learn/css': typeof LearnCssRoute
+  '/learn/html': typeof LearnHtmlRoute
   '/learn/javascript/$slug': typeof LearnJavascriptSlugRoute
   '/learn/javascript/': typeof LearnJavascriptIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/bookmarks': typeof BookmarksRoute
+  '/practice': typeof PracticeRoute
+  '/productivity': typeof ProductivityRoute
+  '/progress': typeof ProgressRoute
+  '/projects': typeof ProjectsRoute
   '/roadmap': typeof RoadmapRoute
+  '/search': typeof SearchRoute
+  '/tips': typeof TipsRoute
+  '/learn/css': typeof LearnCssRoute
+  '/learn/html': typeof LearnHtmlRoute
   '/learn/javascript/$slug': typeof LearnJavascriptSlugRoute
   '/learn/javascript': typeof LearnJavascriptIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/bookmarks': typeof BookmarksRoute
+  '/practice': typeof PracticeRoute
+  '/productivity': typeof ProductivityRoute
+  '/progress': typeof ProgressRoute
+  '/projects': typeof ProjectsRoute
   '/roadmap': typeof RoadmapRoute
+  '/search': typeof SearchRoute
+  '/tips': typeof TipsRoute
+  '/learn/css': typeof LearnCssRoute
+  '/learn/html': typeof LearnHtmlRoute
   '/learn/javascript/$slug': typeof LearnJavascriptSlugRoute
   '/learn/javascript/': typeof LearnJavascriptIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/roadmap' | '/learn/javascript/$slug' | '/learn/javascript/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/bookmarks'
+    | '/practice'
+    | '/productivity'
+    | '/progress'
+    | '/projects'
+    | '/roadmap'
+    | '/search'
+    | '/tips'
+    | '/learn/css'
+    | '/learn/html'
+    | '/learn/javascript/$slug'
+    | '/learn/javascript/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/roadmap' | '/learn/javascript/$slug' | '/learn/javascript'
+  to:
+    | '/'
+    | '/about'
+    | '/bookmarks'
+    | '/practice'
+    | '/productivity'
+    | '/progress'
+    | '/projects'
+    | '/roadmap'
+    | '/search'
+    | '/tips'
+    | '/learn/css'
+    | '/learn/html'
+    | '/learn/javascript/$slug'
+    | '/learn/javascript'
   id:
     | '__root__'
     | '/'
+    | '/about'
+    | '/bookmarks'
+    | '/practice'
+    | '/productivity'
+    | '/progress'
+    | '/projects'
     | '/roadmap'
+    | '/search'
+    | '/tips'
+    | '/learn/css'
+    | '/learn/html'
     | '/learn/javascript/$slug'
     | '/learn/javascript/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  BookmarksRoute: typeof BookmarksRoute
+  PracticeRoute: typeof PracticeRoute
+  ProductivityRoute: typeof ProductivityRoute
+  ProgressRoute: typeof ProgressRoute
+  ProjectsRoute: typeof ProjectsRoute
   RoadmapRoute: typeof RoadmapRoute
+  SearchRoute: typeof SearchRoute
+  TipsRoute: typeof TipsRoute
+  LearnCssRoute: typeof LearnCssRoute
+  LearnHtmlRoute: typeof LearnHtmlRoute
   LearnJavascriptSlugRoute: typeof LearnJavascriptSlugRoute
   LearnJavascriptIndexRoute: typeof LearnJavascriptIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tips': {
+      id: '/tips'
+      path: '/tips'
+      fullPath: '/tips'
+      preLoaderRoute: typeof TipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/roadmap': {
       id: '/roadmap'
       path: '/roadmap'
@@ -83,11 +235,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoadmapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/progress': {
+      id: '/progress'
+      path: '/progress'
+      fullPath: '/progress'
+      preLoaderRoute: typeof ProgressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/productivity': {
+      id: '/productivity'
+      path: '/productivity'
+      fullPath: '/productivity'
+      preLoaderRoute: typeof ProductivityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/practice': {
+      id: '/practice'
+      path: '/practice'
+      fullPath: '/practice'
+      preLoaderRoute: typeof PracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookmarks': {
+      id: '/bookmarks'
+      path: '/bookmarks'
+      fullPath: '/bookmarks'
+      preLoaderRoute: typeof BookmarksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/html': {
+      id: '/learn/html'
+      path: '/learn/html'
+      fullPath: '/learn/html'
+      preLoaderRoute: typeof LearnHtmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/css': {
+      id: '/learn/css'
+      path: '/learn/css'
+      fullPath: '/learn/css'
+      preLoaderRoute: typeof LearnCssRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/learn/javascript/': {
@@ -109,7 +317,17 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  BookmarksRoute: BookmarksRoute,
+  PracticeRoute: PracticeRoute,
+  ProductivityRoute: ProductivityRoute,
+  ProgressRoute: ProgressRoute,
+  ProjectsRoute: ProjectsRoute,
   RoadmapRoute: RoadmapRoute,
+  SearchRoute: SearchRoute,
+  TipsRoute: TipsRoute,
+  LearnCssRoute: LearnCssRoute,
+  LearnHtmlRoute: LearnHtmlRoute,
   LearnJavascriptSlugRoute: LearnJavascriptSlugRoute,
   LearnJavascriptIndexRoute: LearnJavascriptIndexRoute,
 }
