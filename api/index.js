@@ -110,11 +110,6 @@ async function sendFetchResponse(fetchResponse, nodeResponse) {
 export default async function handler(request, response) {
   const { pathname } = new URL(request.url, `http://${request.headers.host}`);
   
-  // Security headers
-  response.setHeader('X-Content-Type-Options', 'nosniff');
-  response.setHeader('X-Frame-Options', 'DENY');
-  response.setHeader('X-XSS-Protection', '1; mode=block');
-  
   try {
     // Try to serve static files first
     if (isStaticAsset(pathname)) {
@@ -126,31 +121,27 @@ export default async function handler(request, response) {
     // Fall back to server handler (SSR)
     if (workerHandler) {
       try {
-        // Create a Fetch API request from the Node.js request
         const fetchRequest = await createFetchRequest(request);
         
-        // Handle both function and object with fetch method (TanStack Start vs custom)
+        // CRITICAL: Pass process.env and an empty context object
         const fetchResponse = typeof workerHandler === 'function' 
-          ? await workerHandler(fetchRequest)
-          : await workerHandler.fetch(fetchRequest);
+          ? await workerHandler(fetchRequest, process.env, {})
+          : await workerHandler.fetch(fetchRequest, process.env, {});
         
-        // Send the Fetch API response back as a Node.js response
         await sendFetchResponse(fetchResponse, response);
       } catch (error) {
-        console.error('Handler execution error:', error);
+        console.error('SSR Execution Error:', error);
         response.statusCode = 500;
-        response.setHeader('Content-Type', 'application/json');
-        response.end(JSON.stringify({ error: 'Handler error: ' + error.message }));
+        response.end(JSON.stringify({ error: 'SSR Error: ' + error.message, stack: error.stack }));
       }
     } else {
+      console.error('Server handler not found in dist/server');
       response.statusCode = 500;
-      response.setHeader('Content-Type', 'application/json');
-      response.end(JSON.stringify({ error: 'Server handler not available' }));
+      response.end('Server handler not available. Check if "npm run build" was successful.');
     }
   } catch (error) {
-    console.error('Request handler error:', error);
+    console.error('Global Request Error:', error);
     response.statusCode = 500;
-    response.setHeader('Content-Type', 'application/json');
-    response.end(JSON.stringify({ error: 'Internal server error: ' + error.message }));
+    response.end('Internal Error: ' + error.message);
   }
 }
