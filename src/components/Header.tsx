@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import { Sidebar } from "./Sidebar";
 import { CommandPalette } from "./CommandPalette";
+import { InstallButton } from "./InstallButton";
 
 export function Header() {
   const navigate = useNavigate();
@@ -82,6 +83,7 @@ export function Header() {
             >
               <Search className="h-4 w-4" />
             </button>
+            <InstallButton />
             <button
               onClick={toggleTheme}
               className="rounded-lg border-2 border-border bg-card p-1.5 transition hover:bg-muted"

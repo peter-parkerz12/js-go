@@ -99,7 +99,7 @@ learn(you).then(ship); // → React-ready`}
               ))}
             </div>
           </BentoCard>
-          <BentoCard title="Live Practice" description="HTML/CSS/JS playground with instant preview." icon={<Code2 className="h-5 w-5" />} to="/practice" />
+          <BentoCard title="Live Practice" description="Playground with instant preview." icon={<Code2 className="h-5 w-5" />} to="/practice" />
           <BentoCard title="Search" description="Cmd/Ctrl + K, instant results." icon={<Search className="h-5 w-5" />} to="/bookmarks" />
           <BentoCard title="Roadmap" description="60–90 day plan from zero to React-ready." icon={<Compass className="h-5 w-5" />} to="/roadmap" span="wide" />
           <BentoCard title="Projects" description="Real builds you can ship." icon={<Dumbbell className="h-5 w-5" />} to="/projects" />

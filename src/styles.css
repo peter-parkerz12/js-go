@@ -62,13 +62,13 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.55 0.22 295);
+  --primary: oklch(94.12% 0.2001 105.694);
   --primary-foreground: oklch(0.99 0 0);
   --secondary: oklch(0.95 0.01 270);
   --secondary-foreground: oklch(0.18 0 0);
   --muted: oklch(0.96 0 0);
   --muted-foreground: oklch(0.45 0.02 270);
-  --accent: oklch(0.55 0.22 295);
+  --accent: oklch(94.12% 0.2001 105.694);
   --accent-foreground: oklch(0.99 0 0);
   --accent-2: oklch(0.78 0.15 200);
   --destructive: oklch(0.6 0.22 25);
@@ -77,7 +77,7 @@
   --warning: oklch(0.78 0.16 75);
   --border: oklch(0.18 0 0);
   --input: oklch(0.9 0 0);
-  --ring: oklch(0.55 0.22 295);
+  --ring: oklch(94.12% 0.2001 105.694);
 
   --code-bg: oklch(0.18 0.01 270);
   --code-keyword: oklch(0.78 0.18 320);
@@ -98,13 +98,13 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.13 0.005 270);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.78 0.15 295);
+  --primary: oklch(94.12% 0.2001 105.694);
   --primary-foreground: oklch(0.08 0 0);
   --secondary: oklch(0.18 0.005 270);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.16 0.005 270);
   --muted-foreground: oklch(0.7 0.02 270);
-  --accent: oklch(0.78 0.15 295);
+  --accent: oklch(94.12% 0.2001 105.694);
   --accent-foreground: oklch(0.08 0 0);
   --accent-2: oklch(0.82 0.16 200);
   --destructive: oklch(0.7 0.22 25);
@@ -113,7 +113,7 @@
   --warning: oklch(0.82 0.16 75);
   --border: oklch(0.28 0.005 270);
   --input: oklch(0.22 0.005 270);
-  --ring: oklch(0.78 0.15 295);
+  --ring: oklch(95.471% 0.21554 114.604);
 }
 
 @layer base {
@@ -124,11 +124,28 @@
     color-scheme: light dark;
   }
   body {
+    margin: 0;
+    min-height: 100vh;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
+    overscroll-behavior: contain;
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-top: env(safe-area-inset-top);
+  }
+
+  img,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
   }
   ::selection {
     background-color: color-mix(in oklab, var(--color-accent) 40%, transparent);

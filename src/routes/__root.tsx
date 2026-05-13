@@ -10,6 +10,8 @@ import {
 
 import appCss from "../styles.css?url";
 import { Header } from "@/components/Header";
+import { OfflineBanner } from "@/components/OfflineBanner";
+import { UpdatePrompt } from "@/components/UpdatePrompt";
 
 function NotFoundComponent() {
   return (
@@ -60,12 +62,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Premium documentation and learning platform for HTML, CSS, and JavaScript. Beginner to advanced in 60–90 days.",
       },
       { name: "author", content: "JS:GO" },
+      { name: "theme-color", content: "#7c3aed" },
+      { name: "mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
       { property: "og:title", content: "JS:GO — Learn JavaScript from Zero to Pro" },
       { property: "og:description", content: "Beginner to advanced JavaScript. Bento UI, dark neo-brutalism, real projects." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "manifest", href: "/manifest.webmanifest" },
+      { rel: "icon", href: "/icons/icon.svg" },
+      { rel: "apple-touch-icon", href: "/icons/apple-touch-icon.svg" },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -98,6 +109,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Header />
+      <OfflineBanner />
       <main>
         <Outlet />
       </main>
@@ -105,6 +117,7 @@ function RootComponent() {
         <span className="font-mono">JS:GO</span> · built to make you fluent in JavaScript ·
         <Link to="/about" className="ml-1 underline hover:text-foreground">about</Link>
       </footer>
+      <UpdatePrompt />
     </QueryClientProvider>
   );
 }
