@@ -3,18 +3,28 @@ import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = resolve(fileURLToPath(import.meta.url), '..');
-const clientDir = resolve(__dirname, '..', 'dist', 'client');
+const clientDir = resolve(process.cwd(), 'dist', 'client');
 
 // Import the worker handler
 let workerHandler;
 try {
   // Try server.js (Node/Vercel build) then index.js (Worker build)
-  const paths = ['./server.js', '../dist/server/server.js', '../dist/server/index.js'];
+  const paths = [
+    resolve(process.cwd(), 'dist', 'server', 'server.js'),
+    resolve(process.cwd(), 'dist', 'server', 'index.js'),
+    '../dist/server/server.js'
+  ];
+  
   for (const p of paths) {
     try {
-      const module = await import(p);
-      workerHandler = module.default;
-      if (workerHandler) break;
+      if (existsSync(p) || !p.startsWith('/')) {
+        const module = await import(p);
+        workerHandler = module.default || module;
+        if (workerHandler) {
+          console.log(`Loaded server handler from: ${p}`);
+          break;
+        }
+      }
     } catch (e) {
       // Continue to next path
     }
@@ -75,9 +85,24 @@ function serveStaticFile(pathname, response) {
 
 // Convert Node.js request to Fetch API Request
 async function createFetchRequest(nodeRequest) {
-  const url = new URL(nodeRequest.url, `http://${nodeRequest.headers.host}`);
+  const protocol = nodeRequest.headers['x-forwarded-proto'] || 'http';
+  const host = nodeRequest.headers['host'];
+  const url = new URL(nodeRequest.url, `${protocol}://${host}`);
   const method = nodeRequest.method || 'GET';
   
+  // Filter headers
+  const forbiddenHeaders = ['connection', 'content-length', 'host', 'keep-alive', 'proxy-authenticate', 'proxy-authorization', 'te', 'trailers', 'transfer-encoding', 'upgrade'];
+  const headers = new Headers();
+  for (const [key, value] of Object.entries(nodeRequest.headers)) {
+    if (!forbiddenHeaders.includes(key.toLowerCase()) && value !== undefined) {
+      if (Array.isArray(value)) {
+        value.forEach(v => headers.append(key, v));
+      } else {
+        headers.set(key, value);
+      }
+    }
+  }
+
   let body = undefined;
   if (method !== 'GET' && method !== 'HEAD') {
     body = nodeRequest;
@@ -85,8 +110,9 @@ async function createFetchRequest(nodeRequest) {
   
   return new Request(url.toString(), {
     method,
-    headers: nodeRequest.headers,
+    headers,
     body,
+    redirect: 'manual'
   });
 }
 
@@ -95,15 +121,13 @@ async function sendFetchResponse(fetchResponse, nodeResponse) {
   nodeResponse.statusCode = fetchResponse.status;
   
   for (const [key, value] of fetchResponse.headers.entries()) {
-    nodeResponse.setHeader(key, value);
+    if (key.toLowerCase() !== 'content-length') {
+      nodeResponse.setHeader(key, value);
+    }
   }
   
-  if (fetchResponse.body) {
-    const buffer = await fetchResponse.arrayBuffer();
-    nodeResponse.end(Buffer.from(buffer));
-  } else {
-    nodeResponse.end();
-  }
+  const body = await fetchResponse.arrayBuffer();
+  nodeResponse.end(Buffer.from(body));
 }
 
 // Main handler
@@ -123,7 +147,6 @@ export default async function handler(request, response) {
       try {
         const fetchRequest = await createFetchRequest(request);
         
-        // CRITICAL: Pass process.env and an empty context object
         const fetchResponse = typeof workerHandler === 'function' 
           ? await workerHandler(fetchRequest, process.env, {})
           : await workerHandler.fetch(fetchRequest, process.env, {});
@@ -132,7 +155,12 @@ export default async function handler(request, response) {
       } catch (error) {
         console.error('SSR Execution Error:', error);
         response.statusCode = 500;
-        response.end(JSON.stringify({ error: 'SSR Error: ' + error.message, stack: error.stack }));
+        response.setHeader('Content-Type', 'application/json');
+        response.end(JSON.stringify({ 
+          error: 'SSR Execution Error', 
+          message: error.message, 
+          stack: error.stack 
+        }));
       }
     } else {
       console.error('Server handler not found in dist/server');
