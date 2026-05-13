@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LearnJavascriptIndexRouteImport } from './routes/learn.javascript.index'
+import { Route as LearnJavascriptSlugRouteImport } from './routes/learn.javascript.$slug'
 
 const RoadmapRoute = RoadmapRouteImport.update({
   id: '/roadmap',
@@ -22,31 +24,54 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LearnJavascriptIndexRoute = LearnJavascriptIndexRouteImport.update({
+  id: '/learn/javascript/',
+  path: '/learn/javascript/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnJavascriptSlugRoute = LearnJavascriptSlugRouteImport.update({
+  id: '/learn/javascript/$slug',
+  path: '/learn/javascript/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/roadmap': typeof RoadmapRoute
+  '/learn/javascript/$slug': typeof LearnJavascriptSlugRoute
+  '/learn/javascript/': typeof LearnJavascriptIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/roadmap': typeof RoadmapRoute
+  '/learn/javascript/$slug': typeof LearnJavascriptSlugRoute
+  '/learn/javascript': typeof LearnJavascriptIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/roadmap': typeof RoadmapRoute
+  '/learn/javascript/$slug': typeof LearnJavascriptSlugRoute
+  '/learn/javascript/': typeof LearnJavascriptIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/roadmap'
+  fullPaths: '/' | '/roadmap' | '/learn/javascript/$slug' | '/learn/javascript/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/roadmap'
-  id: '__root__' | '/' | '/roadmap'
+  to: '/' | '/roadmap' | '/learn/javascript/$slug' | '/learn/javascript'
+  id:
+    | '__root__'
+    | '/'
+    | '/roadmap'
+    | '/learn/javascript/$slug'
+    | '/learn/javascript/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   RoadmapRoute: typeof RoadmapRoute
+  LearnJavascriptSlugRoute: typeof LearnJavascriptSlugRoute
+  LearnJavascriptIndexRoute: typeof LearnJavascriptIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +90,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learn/javascript/': {
+      id: '/learn/javascript/'
+      path: '/learn/javascript'
+      fullPath: '/learn/javascript/'
+      preLoaderRoute: typeof LearnJavascriptIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/javascript/$slug': {
+      id: '/learn/javascript/$slug'
+      path: '/learn/javascript/$slug'
+      fullPath: '/learn/javascript/$slug'
+      preLoaderRoute: typeof LearnJavascriptSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   RoadmapRoute: RoadmapRoute,
+  LearnJavascriptSlugRoute: LearnJavascriptSlugRoute,
+  LearnJavascriptIndexRoute: LearnJavascriptIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
