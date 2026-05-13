@@ -13,6 +13,7 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
+  cloudflare: false,
   vite: {
     plugins: [
       VitePWA({

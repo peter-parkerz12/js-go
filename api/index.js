@@ -8,8 +8,17 @@ const clientDir = resolve(__dirname, '..', 'dist', 'client');
 // Import the worker handler
 let workerHandler;
 try {
-  const module = await import('../dist/server/index.js');
-  workerHandler = module.default;
+  // Try server.js (Node/Vercel build) then index.js (Worker build)
+  const paths = ['./server.js', '../dist/server/server.js', '../dist/server/index.js'];
+  for (const p of paths) {
+    try {
+      const module = await import(p);
+      workerHandler = module.default;
+      if (workerHandler) break;
+    } catch (e) {
+      // Continue to next path
+    }
+  }
 } catch (error) {
   console.error('Failed to load server handler:', error);
 }
@@ -119,19 +128,29 @@ export default async function handler(request, response) {
       try {
         // Create a Fetch API request from the Node.js request
         const fetchRequest = await createFetchRequest(request);
-        const fetchResponse = await workerHandler(fetchRequest);
+        
+        // Handle both function and object with fetch method (TanStack Start vs custom)
+        const fetchResponse = typeof workerHandler === 'function' 
+          ? await workerHandler(fetchRequest)
+          : await workerHandler.fetch(fetchRequest);
         
         // Send the Fetch API response back as a Node.js response
         await sendFetchResponse(fetchResponse, response);
       } catch (error) {
         console.error('Handler execution error:', error);
-        response.status(500).json({ error: 'Handler error: ' + error.message });
+        response.statusCode = 500;
+        response.setHeader('Content-Type', 'application/json');
+        response.end(JSON.stringify({ error: 'Handler error: ' + error.message }));
       }
     } else {
-      response.status(500).json({ error: 'Server handler not available' });
+      response.statusCode = 500;
+      response.setHeader('Content-Type', 'application/json');
+      response.end(JSON.stringify({ error: 'Server handler not available' }));
     }
   } catch (error) {
     console.error('Request handler error:', error);
-    response.status(500).json({ error: 'Internal server error: ' + error.message });
+    response.statusCode = 500;
+    response.setHeader('Content-Type', 'application/json');
+    response.end(JSON.stringify({ error: 'Internal server error: ' + error.message }));
   }
 }
