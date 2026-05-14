@@ -18,7 +18,7 @@ export default defineConfig({
     plugins: [
       VitePWA({
         injectRegister: false,
-        includeAssets: ["offline.html", "icons/icon.svg", "icons/apple-touch-icon.svg"],
+        includeAssets: ["offline.html", "icons/mysvg.svg"],
         devOptions: {
           enabled: true,
         },
@@ -27,7 +27,7 @@ export default defineConfig({
           short_name: "JS:GO",
           description:
             "Premium documentation and learning platform for HTML, CSS, and JavaScript, with installable offline access.",
-          theme_color: "#7c3aed",
+          theme_color: "#F5E900",
           background_color: "#0f172a",
           display: "standalone",
           scope: "/",
@@ -35,13 +35,13 @@ export default defineConfig({
           categories: ["education", "productivity", "developer"],
           icons: [
             {
-              src: "/icons/icon.svg",
+              src: "/icons/mysvg.svg",
               type: "image/svg+xml",
               sizes: "any",
               purpose: "any maskable",
             },
             {
-              src: "/icons/apple-touch-icon.svg",
+              src: "/icons/mysvg.svg",
               type: "image/svg+xml",
               sizes: "any",
               purpose: "any",
