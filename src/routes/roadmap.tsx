@@ -6,7 +6,11 @@ export const Route = createFileRoute("/roadmap")({
   head: () => ({
     meta: [
       { title: "Roadmap — JS:GO" },
-      { name: "description", content: "A 60–90 day plan to go from absolute beginner to React-ready JavaScript developer." },
+      {
+        name: "description",
+        content:
+          "A 60–90 day plan to go from absolute beginner to React-ready JavaScript developer.",
+      },
     ],
   }),
 });
@@ -15,7 +19,15 @@ const PLAN = [
   {
     week: "Week 1–2",
     title: "HTML & CSS Foundations",
-    items: ["HTML5 boilerplate", "Semantic tags", "Forms", "Box model", "Flexbox", "Grid", "Responsive design"],
+    items: [
+      "HTML5 boilerplate",
+      "Semantic tags",
+      "Forms",
+      "Box model",
+      "Flexbox",
+      "Grid",
+      "Responsive design",
+    ],
     link: "/learn/html",
   },
   {
@@ -57,7 +69,12 @@ const PLAN = [
   {
     week: "Week 11–12",
     title: "React-Ready",
-    items: ["The 20% of JS that powers React", "Components mental model", "Build a small app", "Read real source"],
+    items: [
+      "The 20% of JS that powers React",
+      "Components mental model",
+      "Build a small app",
+      "Read real source",
+    ],
     link: "/learn/javascript/twenty-percent-for-react",
   },
 ];
@@ -66,7 +83,9 @@ function Roadmap() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 md:py-16">
       <div className="mb-8 max-w-2xl">
-        <span className="chip"><Calendar className="h-3 w-3" /> 60–90 day plan</span>
+        <span className="chip">
+          <Calendar className="h-3 w-3" /> 60–90 day plan
+        </span>
         <h1 className="mt-3 text-4xl font-black tracking-tight md:text-5xl">The roadmap</h1>
         <p className="mt-3 text-muted-foreground">
           Follow this path 30–60 minutes a day for ~3 months. Skip nothing. Build along the way.
@@ -77,13 +96,19 @@ function Roadmap() {
           <li key={p.week} className="bento p-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{p.week}</div>
+                <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                  {p.week}
+                </div>
                 <h2 className="mt-1 text-2xl font-extrabold tracking-tight">
-                  <span className="mr-2 text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="mr-2 text-muted-foreground">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   {p.title}
                 </h2>
               </div>
-              <Link to={p.link} className="btn-ghost">Start →</Link>
+              <Link to={p.link} className="btn-ghost">
+                Start →
+              </Link>
             </div>
             <ul className="mt-4 grid gap-2 sm:grid-cols-2">
               {p.items.map((it) => (

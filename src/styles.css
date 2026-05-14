@@ -92,7 +92,7 @@
 
 .dark {
   --background: oklch(0.04 0 0);
-  --surface: oklch(0.10 0 0);
+  --surface: oklch(0.1 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.13 0.005 270);
   --card-foreground: oklch(0.985 0 0);
@@ -122,10 +122,15 @@
   }
   html {
     color-scheme: light dark;
+    overflow-x: hidden;
+    max-width: 100vw;
+    scroll-behavior: smooth;
   }
   body {
     margin: 0;
     min-height: 100vh;
+    max-width: 100vw;
+    overflow-x: hidden;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
@@ -138,9 +143,11 @@
 
   img,
   svg,
-  video {
+  video,
+  canvas {
     max-width: 100%;
     height: auto;
+    display: block;
   }
 
   pre,
@@ -150,6 +157,25 @@
   ::selection {
     background-color: color-mix(in oklab, var(--color-accent) 40%, transparent);
     color: var(--color-foreground);
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Visible focus rings */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 }
 
@@ -162,6 +188,8 @@
     transition:
       transform 200ms ease,
       box-shadow 200ms ease;
+    /* prevent flex/grid children from overflowing */
+    min-width: 0;
   }
   .bento-hover:hover {
     transform: translate(-2px, -2px);
@@ -183,13 +211,17 @@
     font-weight: 500;
     background-color: var(--color-surface);
     color: var(--color-foreground);
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .btn-brutal {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.25rem;
+    /* 44px minimum touch target */
+    min-height: 44px;
+    padding: 0.625rem 1.25rem;
     border: 2px solid var(--color-border);
     border-radius: var(--radius-md);
     background-color: var(--color-foreground);
@@ -197,6 +229,8 @@
     font-weight: 600;
     box-shadow: 4px 4px 0 0 var(--color-border);
     transition: all 150ms ease;
+    cursor: pointer;
+    white-space: nowrap;
   }
   .btn-brutal:hover {
     transform: translate(-2px, -2px);
@@ -211,13 +245,16 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.25rem;
+    min-height: 44px;
+    padding: 0.625rem 1.25rem;
     border: 2px solid var(--color-border);
     border-radius: var(--radius-md);
     background-color: var(--color-card);
     color: var(--color-foreground);
     font-weight: 600;
     transition: all 150ms ease;
+    cursor: pointer;
+    white-space: nowrap;
   }
   .btn-ghost:hover {
     background-color: var(--color-muted);
@@ -227,7 +264,8 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.25rem;
+    min-height: 44px;
+    padding: 0.625rem 1.25rem;
     border: 2px solid var(--color-border);
     border-radius: var(--radius-md);
     background-color: var(--color-accent);
@@ -235,6 +273,8 @@
     font-weight: 600;
     box-shadow: 4px 4px 0 0 var(--color-border);
     transition: all 150ms ease;
+    cursor: pointer;
+    white-space: nowrap;
   }
   .btn-accent:hover {
     transform: translate(-2px, -2px);
@@ -242,25 +282,33 @@
   }
   .prose-doc {
     color: var(--color-foreground);
-    line-height: 1.7;
+    line-height: 1.75;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .prose-doc h2 {
-    font-size: 1.75rem;
+    /* fluid: from 1.25rem on mobile to 1.75rem on desktop */
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
     font-weight: 800;
     margin-top: 2rem;
     margin-bottom: 0.75rem;
     letter-spacing: -0.02em;
+    line-height: 1.25;
+    text-wrap: balance;
   }
   .prose-doc h3 {
-    font-size: 1.25rem;
+    font-size: clamp(1.05rem, 3vw, 1.25rem);
     font-weight: 700;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
     letter-spacing: -0.01em;
+    line-height: 1.3;
+    text-wrap: balance;
   }
   .prose-doc p {
     margin-bottom: 1rem;
     color: var(--color-muted-foreground);
+    max-width: 72ch;
   }
   .prose-doc strong {
     color: var(--color-foreground);
@@ -283,6 +331,7 @@
     background: color-mix(in oklab, var(--color-accent) 18%, transparent);
     color: var(--color-foreground);
     border: 1px solid var(--color-border);
+    word-break: break-all;
   }
   .scrollbar-thin::-webkit-scrollbar {
     width: 8px;
@@ -291,5 +340,12 @@
   .scrollbar-thin::-webkit-scrollbar-thumb {
     background: var(--color-border);
     border-radius: 999px;
+  }
+
+  /* ─── Table overflow wrapper ─── */
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }

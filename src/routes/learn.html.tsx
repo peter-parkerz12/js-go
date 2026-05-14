@@ -4,7 +4,9 @@ import { CodeBlock } from "@/components/CodeBlock";
 
 export const Route = createFileRoute("/learn/html")({
   component: HtmlPage,
-  head: () => ({ meta: [{ title: "HTML — JS:GO" }, { name: "description", content: "HTML fundamentals." }] }),
+  head: () => ({
+    meta: [{ title: "HTML — JS:GO" }, { name: "description", content: "HTML fundamentals." }],
+  }),
 });
 
 function HtmlPage() {
@@ -26,8 +28,16 @@ function HtmlPage() {
               {l.body.map((b, i) => {
                 if (b.type === "p") return <p key={i}>{b.text}</p>;
                 if (b.type === "h") return <h3 key={i}>{b.text}</h3>;
-                if (b.type === "list") return <ul key={i}>{b.items.map((x) => <li key={x}>{x}</li>)}</ul>;
-                if (b.type === "code") return <CodeBlock key={i} code={b.code} lang={b.lang} title={b.title} />;
+                if (b.type === "list")
+                  return (
+                    <ul key={i}>
+                      {b.items.map((x) => (
+                        <li key={x}>{x}</li>
+                      ))}
+                    </ul>
+                  );
+                if (b.type === "code")
+                  return <CodeBlock key={i} code={b.code} lang={b.lang} title={b.title} />;
                 return null;
               })}
             </div>

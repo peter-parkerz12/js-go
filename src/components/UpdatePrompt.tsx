@@ -14,7 +14,9 @@ export function UpdatePrompt() {
         </div>
         <div className="flex-1">
           <p className="font-semibold">New version available</p>
-          <p className="mt-1 text-sm text-muted-foreground">Refresh to load the latest content and updates.</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Refresh to load the latest content and updates.
+          </p>
         </div>
       </div>
       <button

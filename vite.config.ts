@@ -25,7 +25,8 @@ export default defineConfig({
         manifest: {
           name: "JS:GO — Learn JavaScript from Zero to Pro",
           short_name: "JS:GO",
-          description: "Premium documentation and learning platform for HTML, CSS, and JavaScript, with installable offline access.",
+          description:
+            "Premium documentation and learning platform for HTML, CSS, and JavaScript, with installable offline access.",
           theme_color: "#7c3aed",
           background_color: "#0f172a",
           display: "standalone",

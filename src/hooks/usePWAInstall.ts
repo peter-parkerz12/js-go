@@ -18,7 +18,9 @@ export function usePWAInstall() {
     if (typeof window === "undefined") return;
 
     const isIos = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
-    const isStandalone = window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone;
+    const isStandalone =
+      window.matchMedia("(display-mode: standalone)").matches ||
+      (window.navigator as any).standalone;
     setIosInstall(isIos && !isStandalone);
 
     const beforeInstallPrompt = (e: Event) => {

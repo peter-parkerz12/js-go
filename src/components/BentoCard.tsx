@@ -20,7 +20,13 @@ export function BentoCard({
   children?: ReactNode;
 }) {
   const cls = `bento bento-hover relative flex flex-col gap-3 p-5 ${
-    span === "wide" ? "md:col-span-2" : span === "tall" ? "md:row-span-2" : span === "xl" ? "md:col-span-2 md:row-span-2" : ""
+    span === "wide"
+      ? "md:col-span-2"
+      : span === "tall"
+        ? "md:row-span-2"
+        : span === "xl"
+          ? "md:col-span-2 md:row-span-2"
+          : ""
   } ${accent ? "bg-accent text-accent-foreground" : ""}`;
   const inner = (
     <>
@@ -33,12 +39,19 @@ export function BentoCard({
       <div className="space-y-1">
         <h3 className="text-lg font-extrabold tracking-tight">{title}</h3>
         {description && (
-          <p className={`text-sm ${accent ? "opacity-80" : "text-muted-foreground"}`}>{description}</p>
+          <p className={`text-sm ${accent ? "opacity-80" : "text-muted-foreground"}`}>
+            {description}
+          </p>
         )}
       </div>
       {children}
     </>
   );
-  if (to) return <Link to={to} className={`${cls} group no-underline`}>{inner}</Link>;
+  if (to)
+    return (
+      <Link to={to} className={`${cls} group no-underline`}>
+        {inner}
+      </Link>
+    );
   return <div className={cls}>{inner}</div>;
 }

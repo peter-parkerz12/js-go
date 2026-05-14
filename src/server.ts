@@ -12,7 +12,7 @@ let serverEntryPromise: Promise<ServerEntry> | undefined;
 async function getServerEntry(): Promise<ServerEntry> {
   if (!serverEntryPromise) {
     serverEntryPromise = import("@tanstack/react-start/server-entry").then(
-      (m) => ((m as { default?: ServerEntry }).default ?? (m as unknown as ServerEntry)),
+      (m) => (m as { default?: ServerEntry }).default ?? (m as unknown as ServerEntry),
     );
   }
   return serverEntryPromise;
@@ -73,21 +73,27 @@ export default {
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);
     } catch (error) {
-      console.error('SERVER FETCH CRASH:', error);
+      console.error("SERVER FETCH CRASH:", error);
       // Return the actual error in the response body for debugging
-      const errorDetail = error instanceof Error ? {
-        message: error.message,
-        stack: error.stack,
-        name: error.name
-      } : { message: String(error) };
-      
-      return new Response(JSON.stringify({ 
-        error: "Server Fetch Crash", 
-        detail: errorDetail 
-      }), {
-        status: 500,
-        headers: { "content-type": "application/json" },
-      });
+      const errorDetail =
+        error instanceof Error
+          ? {
+              message: error.message,
+              stack: error.stack,
+              name: error.name,
+            }
+          : { message: String(error) };
+
+      return new Response(
+        JSON.stringify({
+          error: "Server Fetch Crash",
+          detail: errorDetail,
+        }),
+        {
+          status: 500,
+          headers: { "content-type": "application/json" },
+        },
+      );
     }
   },
 };

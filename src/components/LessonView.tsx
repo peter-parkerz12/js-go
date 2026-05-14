@@ -1,5 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { Bookmark, BookmarkCheck, ChevronLeft, ChevronRight, CircleCheck, Clock, Lightbulb, Target } from "lucide-react";
+import {
+  Bookmark,
+  BookmarkCheck,
+  ChevronLeft,
+  ChevronRight,
+  CircleCheck,
+  Clock,
+  Lightbulb,
+  Target,
+} from "lucide-react";
 import { CodeBlock } from "./CodeBlock";
 import type { Lesson } from "@/data/curriculum";
 import { neighbors } from "@/data/curriculum";
@@ -16,7 +25,7 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
   const isDone = completed.includes(lesson.slug);
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-8">
+    <article className="mx-auto max-w-3xl px-4 py-6 sm:py-8">
       <div className="mb-5 flex flex-wrap items-center gap-2">
         <span className="chip">{lesson.phase}</span>
         <span className="chip">
@@ -26,10 +35,15 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
           <Clock className="h-3 w-3" /> {lesson.estimatedTime}
         </span>
       </div>
-      <h1 className="text-3xl font-black leading-tight tracking-tight md:text-4xl">{lesson.title}</h1>
+      <h1
+        className="text-2xl font-black leading-tight tracking-tight sm:text-3xl md:text-4xl"
+        style={{ textWrap: "balance" }}
+      >
+        {lesson.title}
+      </h1>
       <p className="mt-3 text-lg text-muted-foreground">{lesson.description}</p>
 
-      <div className="mt-5 flex flex-wrap gap-2">
+      <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
         <button
           onClick={() => toggleBookmark(lesson.slug)}
           className={bookmarked ? "btn-accent" : "btn-ghost"}
@@ -77,7 +91,9 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
           if (b.type === "list")
             return (
               <ul key={i}>
-                {b.items.map((it) => <li key={it}>{it}</li>)}
+                {b.items.map((it) => (
+                  <li key={it}>{it}</li>
+                ))}
               </ul>
             );
           if (b.type === "code")
@@ -112,7 +128,9 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
                 Common mistakes
               </div>
               <ul className="space-y-1.5 text-sm text-muted-foreground">
-                {lesson.mistakes.map((m) => <li key={m}>• {m}</li>)}
+                {lesson.mistakes.map((m) => (
+                  <li key={m}>• {m}</li>
+                ))}
               </ul>
             </div>
           ) : null}
@@ -122,7 +140,9 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
                 Best practices
               </div>
               <ul className="space-y-1.5 text-sm text-muted-foreground">
-                {lesson.bestPractices.map((m) => <li key={m}>• {m}</li>)}
+                {lesson.bestPractices.map((m) => (
+                  <li key={m}>• {m}</li>
+                ))}
               </ul>
             </div>
           ) : null}
@@ -135,35 +155,53 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
             Practice
           </div>
           <ul className="space-y-1.5 text-sm">
-            {lesson.practice.map((m) => <li key={m}>→ {m}</li>)}
+            {lesson.practice.map((m) => (
+              <li key={m}>→ {m}</li>
+            ))}
           </ul>
         </div>
       ) : null}
 
       <div className="bento mt-8 p-5">
-        <div className="mb-1 text-xs font-bold uppercase tracking-wider text-muted-foreground">Summary</div>
+        <div className="mb-1 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+          Summary
+        </div>
         <p className="text-sm">{lesson.summary}</p>
       </div>
 
-      <div className="mt-10 grid gap-3 md:grid-cols-2">
+      <div className="mt-10 grid gap-3 sm:grid-cols-2">
         {prev ? (
-          <Link to={`/learn/javascript/${prev.slug}`} className="bento bento-hover flex items-center gap-3 p-4">
+          <Link
+            to="/learn/javascript/$slug"
+            params={{ slug: prev.slug }}
+            className="bento bento-hover flex min-w-0 items-center gap-3 p-4"
+          >
             <ChevronLeft className="h-5 w-5 shrink-0" />
-            <div>
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Previous</div>
-              <div className="text-sm font-semibold">{prev.title}</div>
+            <div className="min-w-0">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                Previous
+              </div>
+              <div className="truncate text-sm font-semibold">{prev.title}</div>
             </div>
           </Link>
-        ) : <div />}
+        ) : (
+          <div />
+        )}
         {next ? (
-          <Link to={`/learn/javascript/${next.slug}`} className="bento bento-hover flex items-center justify-end gap-3 p-4 text-right">
-            <div>
+          <Link
+            to="/learn/javascript/$slug"
+            params={{ slug: next.slug }}
+            className="bento bento-hover flex min-w-0 items-center justify-end gap-3 p-4 text-right"
+          >
+            <div className="min-w-0">
               <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Next</div>
-              <div className="text-sm font-semibold">{next.title}</div>
+              <div className="truncate text-sm font-semibold">{next.title}</div>
             </div>
             <ChevronRight className="h-5 w-5 shrink-0" />
           </Link>
-        ) : <div />}
+        ) : (
+          <div />
+        )}
       </div>
     </article>
   );

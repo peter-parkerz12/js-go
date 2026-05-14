@@ -22,7 +22,9 @@ function NotFoundComponent() {
         <p className="mt-2 text-sm text-muted-foreground">
           That page does not exist. Head back and pick another path.
         </p>
-        <Link to="/" className="btn-accent mt-5 inline-flex">Go home</Link>
+        <Link to="/" className="btn-accent mt-5 inline-flex">
+          Go home
+        </Link>
       </div>
     </div>
   );
@@ -38,12 +40,17 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>
         <div className="mt-5 flex justify-center gap-2">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="btn-brutal"
           >
             Try again
           </button>
-          <Link to="/" className="btn-ghost">Home</Link>
+          <Link to="/" className="btn-ghost">
+            Home
+          </Link>
         </div>
       </div>
     </div>
@@ -67,7 +74,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
       { property: "og:title", content: "JS:GO — Learn JavaScript from Zero to Pro" },
-      { property: "og:description", content: "Beginner to advanced JavaScript. Bento UI, dark neo-brutalism, real projects." },
+      {
+        property: "og:description",
+        content: "Beginner to advanced JavaScript. Bento UI, dark neo-brutalism, real projects.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -110,12 +120,17 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <Header />
       <OfflineBanner />
-      <main>
+      <main className="min-w-0 overflow-x-hidden">
         <Outlet />
       </main>
-      <footer className="mt-16 border-t-2 border-border py-8 text-center text-xs text-muted-foreground">
+      <footer
+        className="mt-16 border-t-2 border-border py-8 text-center text-xs text-muted-foreground"
+        style={{ paddingBottom: "max(2rem, env(safe-area-inset-bottom))" }}
+      >
         <span className="font-mono">JS:GO</span> · built to make you fluent in JavaScript ·
-        <Link to="/about" className="ml-1 underline hover:text-foreground">about</Link>
+        <Link to="/about" className="ml-1 underline hover:text-foreground">
+          about
+        </Link>
       </footer>
       <UpdatePrompt />
     </QueryClientProvider>

@@ -4,17 +4,28 @@ import { Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/tips")({
   component: TipsPage,
-  head: () => ({ meta: [{ title: "Tips & Discipline — JS:GO" }, { name: "description", content: "Productivity, learning, and mindset systems for developers." }] }),
+  head: () => ({
+    meta: [
+      { title: "Tips & Discipline — JS:GO" },
+      {
+        name: "description",
+        content: "Productivity, learning, and mindset systems for developers.",
+      },
+    ],
+  }),
 });
 
 function TipsPage() {
   const cats = Array.from(new Set(TIPS.map((t) => t.category)));
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
-      <span className="chip"><Sparkles className="h-3 w-3" /> Mindset</span>
+      <span className="chip">
+        <Sparkles className="h-3 w-3" /> Mindset
+      </span>
       <h1 className="mt-3 text-4xl font-black tracking-tight md:text-5xl">Tips & discipline</h1>
       <p className="mt-3 max-w-xl text-muted-foreground">
-        Skill compounds when habits do. These are the systems behind learning fast and staying out of tutorial hell.
+        Skill compounds when habits do. These are the systems behind learning fast and staying out
+        of tutorial hell.
       </p>
       {cats.map((cat) => (
         <section key={cat} className="mt-8">
@@ -26,7 +37,9 @@ function TipsPage() {
                 <p className="mt-2 text-sm text-muted-foreground">{t.body}</p>
                 {t.bullets && (
                   <ul className="mt-3 space-y-1 text-sm">
-                    {t.bullets.map((b) => <li key={b}>→ {b}</li>)}
+                    {t.bullets.map((b) => (
+                      <li key={b}>→ {b}</li>
+                    ))}
                   </ul>
                 )}
               </article>
