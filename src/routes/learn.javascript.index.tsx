@@ -38,7 +38,8 @@ function JavaScriptIndex() {
                 {lessons.map((l) => (
                   <Link
                     key={l.slug}
-                    to={`/learn/javascript/${l.slug}`}
+                    to="/learn/javascript/$slug"
+                    params={{ slug: l.slug }}
                     className="bento bento-hover group flex flex-col gap-2 p-5"
                   >
                     <div className="flex items-center gap-2">

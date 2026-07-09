@@ -147,7 +147,11 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
 
       <div className="mt-10 grid gap-3 md:grid-cols-2">
         {prev ? (
-          <Link to={`/learn/javascript/${prev.slug}`} className="bento bento-hover flex items-center gap-3 p-4">
+          <Link
+            to="/learn/javascript/$slug"
+            params={{ slug: prev.slug }}
+            className="bento bento-hover flex items-center gap-3 p-4"
+          >
             <ChevronLeft className="h-5 w-5 shrink-0" />
             <div>
               <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Previous</div>
@@ -156,7 +160,11 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
           </Link>
         ) : <div />}
         {next ? (
-          <Link to={`/learn/javascript/${next.slug}`} className="bento bento-hover flex items-center justify-end gap-3 p-4 text-right">
+          <Link
+            to="/learn/javascript/$slug"
+            params={{ slug: next.slug }}
+            className="bento bento-hover flex items-center justify-end gap-3 p-4 text-right"
+          >
             <div>
               <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Next</div>
               <div className="text-sm font-semibold">{next.title}</div>

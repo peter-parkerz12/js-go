@@ -19,8 +19,10 @@ import { Route as PracticeRouteImport } from './routes/practice'
 import { Route as BookmarksRouteImport } from './routes/bookmarks'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HighlightedProjectsIndexRouteImport } from './routes/highlighted-projects.index'
 import { Route as LearnHtmlRouteImport } from './routes/learn.html'
 import { Route as LearnCssRouteImport } from './routes/learn.css'
+import { Route as HighlightedProjectsSlugRouteImport } from './routes/highlighted-projects.$slug'
 import { Route as LearnJavascriptIndexRouteImport } from './routes/learn.javascript.index'
 import { Route as LearnJavascriptSlugRouteImport } from './routes/learn.javascript.$slug'
 
@@ -74,6 +76,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HighlightedProjectsIndexRoute =
+  HighlightedProjectsIndexRouteImport.update({
+    id: '/highlighted-projects/',
+    path: '/highlighted-projects/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LearnHtmlRoute = LearnHtmlRouteImport.update({
   id: '/learn/html',
   path: '/learn/html',
@@ -82,6 +90,11 @@ const LearnHtmlRoute = LearnHtmlRouteImport.update({
 const LearnCssRoute = LearnCssRouteImport.update({
   id: '/learn/css',
   path: '/learn/css',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HighlightedProjectsSlugRoute = HighlightedProjectsSlugRouteImport.update({
+  id: '/highlighted-projects/$slug',
+  path: '/highlighted-projects/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnJavascriptIndexRoute = LearnJavascriptIndexRouteImport.update({
@@ -106,8 +119,10 @@ export interface FileRoutesByFullPath {
   '/roadmap': typeof RoadmapRoute
   '/search': typeof SearchRoute
   '/tips': typeof TipsRoute
+  '/highlighted-projects/$slug': typeof HighlightedProjectsSlugRoute
   '/learn/css': typeof LearnCssRoute
   '/learn/html': typeof LearnHtmlRoute
+  '/highlighted-projects/': typeof HighlightedProjectsIndexRoute
   '/learn/javascript/$slug': typeof LearnJavascriptSlugRoute
   '/learn/javascript/': typeof LearnJavascriptIndexRoute
 }
@@ -122,8 +137,10 @@ export interface FileRoutesByTo {
   '/roadmap': typeof RoadmapRoute
   '/search': typeof SearchRoute
   '/tips': typeof TipsRoute
+  '/highlighted-projects/$slug': typeof HighlightedProjectsSlugRoute
   '/learn/css': typeof LearnCssRoute
   '/learn/html': typeof LearnHtmlRoute
+  '/highlighted-projects': typeof HighlightedProjectsIndexRoute
   '/learn/javascript/$slug': typeof LearnJavascriptSlugRoute
   '/learn/javascript': typeof LearnJavascriptIndexRoute
 }
@@ -139,8 +156,10 @@ export interface FileRoutesById {
   '/roadmap': typeof RoadmapRoute
   '/search': typeof SearchRoute
   '/tips': typeof TipsRoute
+  '/highlighted-projects/$slug': typeof HighlightedProjectsSlugRoute
   '/learn/css': typeof LearnCssRoute
   '/learn/html': typeof LearnHtmlRoute
+  '/highlighted-projects/': typeof HighlightedProjectsIndexRoute
   '/learn/javascript/$slug': typeof LearnJavascriptSlugRoute
   '/learn/javascript/': typeof LearnJavascriptIndexRoute
 }
@@ -157,8 +176,10 @@ export interface FileRouteTypes {
     | '/roadmap'
     | '/search'
     | '/tips'
+    | '/highlighted-projects/$slug'
     | '/learn/css'
     | '/learn/html'
+    | '/highlighted-projects/'
     | '/learn/javascript/$slug'
     | '/learn/javascript/'
   fileRoutesByTo: FileRoutesByTo
@@ -173,8 +194,10 @@ export interface FileRouteTypes {
     | '/roadmap'
     | '/search'
     | '/tips'
+    | '/highlighted-projects/$slug'
     | '/learn/css'
     | '/learn/html'
+    | '/highlighted-projects'
     | '/learn/javascript/$slug'
     | '/learn/javascript'
   id:
@@ -189,8 +212,10 @@ export interface FileRouteTypes {
     | '/roadmap'
     | '/search'
     | '/tips'
+    | '/highlighted-projects/$slug'
     | '/learn/css'
     | '/learn/html'
+    | '/highlighted-projects/'
     | '/learn/javascript/$slug'
     | '/learn/javascript/'
   fileRoutesById: FileRoutesById
@@ -206,8 +231,10 @@ export interface RootRouteChildren {
   RoadmapRoute: typeof RoadmapRoute
   SearchRoute: typeof SearchRoute
   TipsRoute: typeof TipsRoute
+  HighlightedProjectsSlugRoute: typeof HighlightedProjectsSlugRoute
   LearnCssRoute: typeof LearnCssRoute
   LearnHtmlRoute: typeof LearnHtmlRoute
+  HighlightedProjectsIndexRoute: typeof HighlightedProjectsIndexRoute
   LearnJavascriptSlugRoute: typeof LearnJavascriptSlugRoute
   LearnJavascriptIndexRoute: typeof LearnJavascriptIndexRoute
 }
@@ -284,6 +311,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/highlighted-projects/': {
+      id: '/highlighted-projects/'
+      path: '/highlighted-projects'
+      fullPath: '/highlighted-projects/'
+      preLoaderRoute: typeof HighlightedProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/learn/html': {
       id: '/learn/html'
       path: '/learn/html'
@@ -296,6 +330,13 @@ declare module '@tanstack/react-router' {
       path: '/learn/css'
       fullPath: '/learn/css'
       preLoaderRoute: typeof LearnCssRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/highlighted-projects/$slug': {
+      id: '/highlighted-projects/$slug'
+      path: '/highlighted-projects/$slug'
+      fullPath: '/highlighted-projects/$slug'
+      preLoaderRoute: typeof HighlightedProjectsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/learn/javascript/': {
@@ -326,8 +367,10 @@ const rootRouteChildren: RootRouteChildren = {
   RoadmapRoute: RoadmapRoute,
   SearchRoute: SearchRoute,
   TipsRoute: TipsRoute,
+  HighlightedProjectsSlugRoute: HighlightedProjectsSlugRoute,
   LearnCssRoute: LearnCssRoute,
   LearnHtmlRoute: LearnHtmlRoute,
+  HighlightedProjectsIndexRoute: HighlightedProjectsIndexRoute,
   LearnJavascriptSlugRoute: LearnJavascriptSlugRoute,
   LearnJavascriptIndexRoute: LearnJavascriptIndexRoute,
 }

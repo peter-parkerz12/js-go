@@ -19,7 +19,11 @@ export const Route = createFileRoute("/bookmarks")({
           <ul className="mt-6 space-y-3">
             {items.map((l) => (
               <li key={l.slug}>
-                <Link to={`/learn/javascript/${l.slug}`} className="bento bento-hover block p-5">
+                <Link
+                  to="/learn/javascript/$slug"
+                  params={{ slug: l.slug }}
+                  className="bento bento-hover block p-5"
+                >
                   <div className="font-extrabold">{l.title}</div>
                   <div className="text-sm text-muted-foreground">{l.description}</div>
                 </Link>

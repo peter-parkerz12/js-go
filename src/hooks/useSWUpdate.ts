@@ -12,7 +12,7 @@ export function useSWUpdate() {
     const wb = new Workbox("/sw.js");
 
     wb.addEventListener("waiting", (event) => {
-      setWaitingWorker(event.sw);
+      setWaitingWorker(event.sw ?? null);
       setUpdateAvailable(true);
     });
 

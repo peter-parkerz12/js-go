@@ -45,19 +45,34 @@ export function Header() {
               </span>
               <span className="text-lg">JS:GO</span>
             </Link>
-            <nav className="ml-4 hidden items-center gap-1 md:flex">
+            <nav className="ml-4 hidden items-center gap-1.5 md:flex">
               {[
                 { to: "/roadmap", label: "Roadmap" },
                 { to: "/learn/javascript", label: "Learn" },
                 { to: "/projects", label: "Projects" },
+                { to: "/highlighted-projects", label: "Highlighted Projects" },
                 { to: "/practice", label: "Practice" },
                 { to: "/tips", label: "Tips" },
               ].map((i) => (
                 <Link
                   key={i.to}
                   to={i.to}
-                  className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground"
-                  activeProps={{ className: "rounded-md px-3 py-1.5 text-sm font-medium text-foreground bg-muted" }}
+                  className={
+                    i.to === "/highlighted-projects"
+                      ? "rounded-md px-3 py-1 text-sm font-bold bg-yellow-300 dark:bg-yellow-400 text-black dark:text-black border-2 border-border shadow-[2px_2px_0_0_var(--color-border)] hover:bg-yellow-400 dark:hover:bg-yellow-300 transition-all duration-150 mx-1"
+                      : "rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground"
+                  }
+                  activeProps={
+                    i.to === "/highlighted-projects"
+                      ? {
+                          className:
+                            "rounded-md px-3 py-1 text-sm font-bold bg-yellow-400 dark:bg-yellow-300 text-black dark:text-black border-2 border-border shadow-[3px_3px_0_0_var(--color-border)] mx-1",
+                        }
+                      : {
+                          className:
+                            "rounded-md px-3 py-1.5 text-sm font-medium text-foreground bg-muted",
+                        }
+                  }
                 >
                   {i.label}
                 </Link>
@@ -98,14 +113,53 @@ export function Header() {
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-black/60" onClick={() => setMobileOpen(false)} />
-          <aside className="absolute left-0 top-0 h-full w-80 max-w-[85vw] border-r-2 border-border bg-background">
-            <div className="flex h-14 items-center justify-between border-b-2 border-border px-4">
+          <aside className="absolute left-0 top-0 h-full w-80 max-w-[85vw] border-r-2 border-border bg-background flex flex-col">
+            <div className="flex h-14 items-center justify-between border-b-2 border-border px-4 shrink-0">
               <span className="font-black">Menu</span>
               <button onClick={() => setMobileOpen(false)} aria-label="Close menu">
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <Sidebar onNavigate={() => setMobileOpen(false)} />
+            
+            {/* Primary navigation list for mobile */}
+            <div className="border-b-2 border-border p-3 flex flex-col gap-1 shrink-0">
+              {[
+                { to: "/roadmap", label: "Roadmap" },
+                { to: "/learn/javascript", label: "Learn" },
+                { to: "/projects", label: "Projects" },
+                { to: "/highlighted-projects", label: "Highlighted Projects" },
+                { to: "/practice", label: "Practice" },
+                { to: "/tips", label: "Tips" },
+              ].map((i) => (
+                <Link
+                  key={i.to}
+                  to={i.to}
+                  onClick={() => setMobileOpen(false)}
+                  className={
+                    i.to === "/highlighted-projects"
+                      ? "rounded-md px-3 py-1.5 text-center text-sm font-bold bg-yellow-300 dark:bg-yellow-400 text-black dark:text-black border-2 border-border shadow-[2px_2px_0_0_var(--color-border)] hover:bg-yellow-400 dark:hover:bg-yellow-300 transition-all duration-150 my-1"
+                      : "rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground"
+                  }
+                  activeProps={
+                    i.to === "/highlighted-projects"
+                      ? {
+                          className:
+                            "rounded-md px-3 py-1.5 text-center text-sm font-bold bg-yellow-400 dark:bg-yellow-300 text-black dark:text-black border-2 border-border shadow-[3px_3px_0_0_var(--color-border)] my-1",
+                        }
+                      : {
+                          className:
+                            "rounded-md px-3 py-1.5 text-sm font-medium text-foreground bg-muted",
+                        }
+                  }
+                >
+                  {i.label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="flex-1 overflow-y-auto">
+              <Sidebar onNavigate={() => setMobileOpen(false)} />
+            </div>
           </aside>
         </div>
       )}
