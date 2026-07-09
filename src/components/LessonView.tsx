@@ -174,11 +174,7 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
           <Link
             to="/learn/javascript/$slug"
             params={{ slug: prev.slug }}
-<<<<<<< HEAD
-            className="bento bento-hover flex items-center gap-3 p-4"
-=======
             className="bento bento-hover flex min-w-0 items-center gap-3 p-4"
->>>>>>> fd8bc72495f2244aff2974795fe3ecec7fd909df
           >
             <ChevronLeft className="h-5 w-5 shrink-0" />
             <div className="min-w-0">
@@ -195,15 +191,9 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
           <Link
             to="/learn/javascript/$slug"
             params={{ slug: next.slug }}
-<<<<<<< HEAD
-            className="bento bento-hover flex items-center justify-end gap-3 p-4 text-right"
-          >
-            <div>
-=======
             className="bento bento-hover flex min-w-0 items-center justify-end gap-3 p-4 text-right"
           >
             <div className="min-w-0">
->>>>>>> fd8bc72495f2244aff2974795fe3ecec7fd909df
               <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Next</div>
               <div className="truncate text-sm font-semibold">{next.title}</div>
             </div>

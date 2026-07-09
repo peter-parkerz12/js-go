@@ -87,7 +87,6 @@ export function Header() {
                 <Link
                   key={i.to}
                   to={i.to}
-<<<<<<< HEAD
                   className={
                     i.to === "/highlighted-projects"
                       ? "rounded-md px-3 py-1 text-sm font-bold bg-yellow-300 dark:bg-yellow-400 text-black dark:text-black border-2 border-border shadow-[2px_2px_0_0_var(--color-border)] hover:bg-yellow-400 dark:hover:bg-yellow-300 transition-all duration-150 mx-1"
@@ -104,13 +103,6 @@ export function Header() {
                             "rounded-md px-3 py-1.5 text-sm font-medium text-foreground bg-muted",
                         }
                   }
-=======
-                  className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground"
-                  activeProps={{
-                    className:
-                      "rounded-md px-3 py-1.5 text-sm font-medium text-foreground bg-muted",
-                  }}
->>>>>>> fd8bc72495f2244aff2974795fe3ecec7fd909df
                 >
                   {i.label}
                 </Link>
@@ -150,12 +142,6 @@ export function Header() {
 
       {/* Mobile drawer */}
       {mobileOpen && (
-<<<<<<< HEAD
-        <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-black/60" onClick={() => setMobileOpen(false)} />
-          <aside className="absolute left-0 top-0 h-full w-80 max-w-[85vw] border-r-2 border-border bg-background flex flex-col">
-            <div className="flex h-14 items-center justify-between border-b-2 border-border px-4 shrink-0">
-=======
         <div
           className="fixed inset-0 z-50 lg:hidden"
           role="dialog"
@@ -175,8 +161,7 @@ export function Header() {
               paddingBottom: "env(safe-area-inset-bottom)",
             }}
           >
-            <div className="flex h-14 items-center justify-between border-b-2 border-border px-4">
->>>>>>> fd8bc72495f2244aff2974795fe3ecec7fd909df
+            <div className="flex h-14 items-center justify-between border-b-2 border-border px-4 shrink-0">
               <span className="font-black">Menu</span>
               <button
                 ref={closeButtonRef}
@@ -187,7 +172,6 @@ export function Header() {
                 <X className="h-5 w-5" />
               </button>
             </div>
-<<<<<<< HEAD
             
             {/* Primary navigation list for mobile */}
             <div className="border-b-2 border-border p-3 flex flex-col gap-1 shrink-0">
@@ -225,10 +209,7 @@ export function Header() {
               ))}
             </div>
 
-            <div className="flex-1 overflow-y-auto">
-=======
             <div className="min-h-0 flex-1 overflow-y-auto">
->>>>>>> fd8bc72495f2244aff2974795fe3ecec7fd909df
               <Sidebar onNavigate={() => setMobileOpen(false)} />
             </div>
           </aside>
