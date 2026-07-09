@@ -7,9 +7,15 @@ export const Route = createFileRoute("/productivity")({
       <p className="mt-3 text-muted-foreground">A short, working system for daily progress.</p>
       <div className="mt-6 space-y-4">
         {[
-          { t: "Morning: 1 question", b: "Write the ONE thing you will ship today on a sticky note." },
+          {
+            t: "Morning: 1 question",
+            b: "Write the ONE thing you will ship today on a sticky note.",
+          },
           { t: "Block: 90 minutes", b: "Phone in another room. One tab. A real timer." },
-          { t: "Recall: 5 minutes", b: "Close the tab. Try to rebuild what you just learned without looking." },
+          {
+            t: "Recall: 5 minutes",
+            b: "Close the tab. Try to rebuild what you just learned without looking.",
+          },
           { t: "Ship: 1 commit", b: "Push something — even tiny. Streaks beat heroics." },
           { t: "Review: weekly", b: "What did you build? What stuck? What is next?" },
         ].map((s) => (
@@ -19,8 +25,15 @@ export const Route = createFileRoute("/productivity")({
           </div>
         ))}
       </div>
-      <Link to="/tips" className="btn-ghost mt-8 inline-flex">More mindset tips →</Link>
+      <Link to="/tips" className="btn-ghost mt-8 inline-flex">
+        More mindset tips →
+      </Link>
     </div>
   ),
-  head: () => ({ meta: [{ title: "Productivity — JS:GO" }, { name: "description", content: "Daily systems for steady progress." }] }),
+  head: () => ({
+    meta: [
+      { title: "Productivity — JS:GO" },
+      { name: "description", content: "Daily systems for steady progress." },
+    ],
+  }),
 });

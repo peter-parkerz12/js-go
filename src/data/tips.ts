@@ -12,7 +12,12 @@ export const TIPS: Tip[] = [
     title: "Deep Work — The Real Cheat Code",
     category: "Productivity",
     body: "Two hours of focused, undistracted coding beats eight hours of half-attention. Block time on your calendar. Phone in another room. One tab. One problem.",
-    bullets: ["Pick ONE thing per session.", "Phone outside the room.", "One browser tab open.", "Use a real timer."],
+    bullets: [
+      "Pick ONE thing per session.",
+      "Phone outside the room.",
+      "One browser tab open.",
+      "Use a real timer.",
+    ],
   },
   {
     slug: "pomodoro",
@@ -25,7 +30,11 @@ export const TIPS: Tip[] = [
     title: "Active Recall > Re-reading",
     category: "Learning",
     body: "Close the tab. Try to write the answer or build the thing without looking. The struggle IS the learning.",
-    bullets: ["Build before reading the solution.", "Explain the topic in plain words.", "Teach an imaginary friend."],
+    bullets: [
+      "Build before reading the solution.",
+      "Explain the topic in plain words.",
+      "Teach an imaginary friend.",
+    ],
   },
   {
     slug: "spaced-repetition",

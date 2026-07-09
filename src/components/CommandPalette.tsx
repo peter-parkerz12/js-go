@@ -22,8 +22,18 @@ const ITEMS: Item[] = [
   })),
   { title: "Roadmap", description: "Your 60–90 day plan", href: "/roadmap", group: "Pages" },
   { title: "Projects", description: "Build to learn", href: "/projects", group: "Pages" },
-  { title: "Practice Playground", description: "Live HTML/CSS/JS sandbox", href: "/practice", group: "Pages" },
-  { title: "Tips & Discipline", description: "Productivity and learning systems", href: "/tips", group: "Pages" },
+  {
+    title: "Practice Playground",
+    description: "Live HTML/CSS/JS sandbox",
+    href: "/practice",
+    group: "Pages",
+  },
+  {
+    title: "Tips & Discipline",
+    description: "Productivity and learning systems",
+    href: "/tips",
+    group: "Pages",
+  },
   { title: "Bookmarks", description: "Your saved lessons", href: "/bookmarks", group: "Pages" },
   { title: "Progress", description: "What you have completed", href: "/progress", group: "Pages" },
 ];
@@ -55,15 +65,23 @@ export function CommandPalette({
 
   const results = useMemo(() => {
     if (!q.trim()) return ITEMS.slice(0, 8);
-    return fuse.search(q).slice(0, 12).map((r) => r.item);
+    return fuse
+      .search(q)
+      .slice(0, 12)
+      .map((r) => r.item);
   }, [q, fuse]);
 
   useEffect(() => {
     if (open) setTimeout(() => inputRef.current?.focus(), 30);
-    else { setQ(""); setActive(0); }
+    else {
+      setQ("");
+      setActive(0);
+    }
   }, [open]);
 
-  useEffect(() => { setActive(0); }, [q]);
+  useEffect(() => {
+    setActive(0);
+  }, [q]);
 
   if (!open) return null;
 
@@ -73,12 +91,15 @@ export function CommandPalette({
   };
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-start justify-center p-4 pt-[12vh]">
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => onOpenChange(false)} />
+    <div className="fixed inset-0 z-[60] flex items-start justify-center p-3 pt-[8vh] sm:p-4 sm:pt-[12vh]">
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        onClick={() => onOpenChange(false)}
+      />
       <div
         role="dialog"
         aria-modal="true"
-        className="relative w-full max-w-xl overflow-hidden rounded-2xl border-2 border-border bg-card shadow-[10px_10px_0_0_var(--color-border)]"
+        className="relative w-full max-w-[calc(100vw-1.5rem)] overflow-hidden rounded-2xl border-2 border-border bg-card shadow-[10px_10px_0_0_var(--color-border)] sm:max-w-xl"
       >
         <div className="flex items-center gap-3 border-b-2 border-border px-4 py-3">
           <Search className="h-4 w-4 text-muted-foreground" />
@@ -87,13 +108,19 @@ export function CommandPalette({
             value={q}
             onChange={(e) => setQ(e.target.value)}
             onKeyDown={(e) => {
-              if (e.key === "ArrowDown") { e.preventDefault(); setActive((a) => Math.min(a + 1, results.length - 1)); }
-              if (e.key === "ArrowUp") { e.preventDefault(); setActive((a) => Math.max(a - 1, 0)); }
+              if (e.key === "ArrowDown") {
+                e.preventDefault();
+                setActive((a) => Math.min(a + 1, results.length - 1));
+              }
+              if (e.key === "ArrowUp") {
+                e.preventDefault();
+                setActive((a) => Math.max(a - 1, 0));
+              }
               if (e.key === "Enter" && results[active]) pick(results[active]);
               if (e.key === "Escape") onOpenChange(false);
             }}
             placeholder="Search lessons, projects, pages…"
-            className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+            className="min-h-[44px] flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
           />
           <kbd className="rounded border border-border bg-background px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
             ESC
@@ -105,15 +132,16 @@ export function CommandPalette({
               Recent
             </div>
           )}
-          {!q && recent.slice(0, 4).map((r) => (
-            <button
-              key={r}
-              onClick={() => setQ(r)}
-              className="block w-full rounded-md px-3 py-1.5 text-left text-sm text-muted-foreground hover:bg-muted"
-            >
-              {r}
-            </button>
-          ))}
+          {!q &&
+            recent.slice(0, 4).map((r) => (
+              <button
+                key={r}
+                onClick={() => setQ(r)}
+                className="block w-full rounded-md px-3 py-1.5 text-left text-sm text-muted-foreground hover:bg-muted"
+              >
+                {r}
+              </button>
+            ))}
           <div className="px-3 pb-2 pt-2 text-[10px] uppercase tracking-wider text-muted-foreground">
             {q ? "Results" : "Suggested"}
           </div>
@@ -128,7 +156,7 @@ export function CommandPalette({
                 <button
                   onMouseEnter={() => setActive(i)}
                   onClick={() => pick(r)}
-                  className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left transition ${
+                  className={`flex min-h-[44px] w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left transition ${
                     i === active ? "bg-accent/15" : "hover:bg-muted"
                   }`}
                 >

@@ -50,7 +50,10 @@ export const LESSONS: Lesson[] = [
     analogy:
       "HTML is the skeleton of a webpage. CSS is the skin and clothes. JavaScript is the muscles that move it.",
     body: [
-      { type: "p", text: "HTML (HyperText Markup Language) describes the structure of a page using tags. A browser reads those tags and turns them into the layout you see." },
+      {
+        type: "p",
+        text: "HTML (HyperText Markup Language) describes the structure of a page using tags. A browser reads those tags and turns them into the layout you see.",
+      },
       { type: "h", text: "The minimal HTML5 document" },
       {
         type: "code",
@@ -70,12 +73,19 @@ export const LESSONS: Lesson[] = [
 </html>`,
       },
       { type: "h", text: "Tags, elements, attributes" },
-      { type: "p", text: "A tag wraps content: <p>hi</p>. An element is the tag plus its content. Attributes (like lang, href, src) configure an element." },
+      {
+        type: "p",
+        text: "A tag wraps content: <p>hi</p>. An element is the tag plus its content. Attributes (like lang, href, src) configure an element.",
+      },
     ],
-    mistakes: ["Forgetting the doctype, which puts browsers in quirks mode.", "Skipping the viewport meta — your page will not be mobile-friendly."],
+    mistakes: [
+      "Forgetting the doctype, which puts browsers in quirks mode.",
+      "Skipping the viewport meta — your page will not be mobile-friendly.",
+    ],
     bestPractices: ["One <h1> per page.", "Always set lang on <html>."],
     practice: ["Build a personal bio page with a heading, paragraph, and an image."],
-    summary: "HTML uses tags to give a page structure. Start with the HTML5 boilerplate every time.",
+    summary:
+      "HTML uses tags to give a page structure. Start with the HTML5 boilerplate every time.",
     related: ["semantic-html", "html-forms"],
   },
   {
@@ -90,8 +100,14 @@ export const LESSONS: Lesson[] = [
     objectives: ["Replace generic <div> with meaningful tags", "Improve accessibility for free"],
     tags: ["html", "a11y", "seo"],
     body: [
-      { type: "p", text: "Semantic tags describe meaning, not just appearance. Screen readers, search engines, and future-you will thank you." },
-      { type: "code", lang: "html", code: `<header>...</header>
+      {
+        type: "p",
+        text: "Semantic tags describe meaning, not just appearance. Screen readers, search engines, and future-you will thank you.",
+      },
+      {
+        type: "code",
+        lang: "html",
+        code: `<header>...</header>
 <nav>...</nav>
 <main>
   <article>
@@ -100,9 +116,13 @@ export const LESSONS: Lesson[] = [
   </article>
   <aside>...</aside>
 </main>
-<footer>...</footer>` },
+<footer>...</footer>`,
+      },
     ],
-    bestPractices: ["Use <button> for actions, <a> for navigation.", "Wrap each page's primary content in one <main>."],
+    bestPractices: [
+      "Use <button> for actions, <a> for navigation.",
+      "Wrap each page's primary content in one <main>.",
+    ],
     summary: "Choose tags by meaning. Reach for <div> only when no semantic tag fits.",
   },
   {
@@ -110,14 +130,18 @@ export const LESSONS: Lesson[] = [
     track: "html",
     phase: "HTML Fundamentals",
     title: "Forms & Inputs",
-    description: "Collect user input the right way with labels, validation, and accessibility built-in.",
+    description:
+      "Collect user input the right way with labels, validation, and accessibility built-in.",
     difficulty: "Beginner",
     estimatedTime: "12 min",
     prerequisites: ["html-basics"],
     objectives: ["Build accessible forms", "Use built-in validation", "Understand FormData"],
     tags: ["html", "forms"],
     body: [
-      { type: "code", lang: "html", code: `<form id="signup">
+      {
+        type: "code",
+        lang: "html",
+        code: `<form id="signup">
   <label for="email">Email</label>
   <input id="email" name="email" type="email" required />
 
@@ -125,10 +149,15 @@ export const LESSONS: Lesson[] = [
   <input id="age" name="age" type="number" min="13" required />
 
   <button type="submit">Sign up</button>
-</form>` },
-      { type: "p", text: "Always pair an <input> with a <label>. The browser handles required, type, min, max, pattern — for free." },
+</form>`,
+      },
+      {
+        type: "p",
+        text: "Always pair an <input> with a <label>. The browser handles required, type, min, max, pattern — for free.",
+      },
     ],
-    summary: "Use the right input type and a real <label>. Most validation is already in the browser.",
+    summary:
+      "Use the right input type and a real <label>. Most validation is already in the browser.",
   },
   {
     slug: "html-accessibility",
@@ -142,12 +171,15 @@ export const LESSONS: Lesson[] = [
     objectives: ["Add alt text", "Use ARIA only when needed", "Check keyboard navigation"],
     tags: ["html", "a11y"],
     body: [
-      { type: "list", items: [
-        "Every <img> needs alt text. Decorative images use alt=\"\".",
-        "Every interactive element must be reachable with Tab.",
-        "Color is not enough — pair color with text or icons.",
-        "Use ARIA to enhance, not replace, native semantics.",
-      ] },
+      {
+        type: "list",
+        items: [
+          'Every <img> needs alt text. Decorative images use alt="".',
+          "Every interactive element must be reachable with Tab.",
+          "Color is not enough — pair color with text or icons.",
+          "Use ARIA to enhance, not replace, native semantics.",
+        ],
+      },
     ],
     summary: "Accessible HTML is just well-written HTML. Use semantic tags and label everything.",
   },
@@ -165,7 +197,10 @@ export const LESSONS: Lesson[] = [
     objectives: ["Use class, id, attribute, pseudo-class selectors", "Read specificity scores"],
     tags: ["css", "fundamentals"],
     body: [
-      { type: "code", lang: "css", code: `/* element */
+      {
+        type: "code",
+        lang: "css",
+        code: `/* element */
 p { color: gray; }
 /* class */
 .card { padding: 1rem; }
@@ -174,8 +209,12 @@ p { color: gray; }
 /* attribute */
 input[type="email"] { border-color: hotpink; }
 /* pseudo-class */
-button:hover { transform: translateY(-2px); }` },
-      { type: "p", text: "Specificity is counted as (inline, id, class, element). A higher number wins. !important overrides everything — avoid it." },
+button:hover { transform: translateY(-2px); }`,
+      },
+      {
+        type: "p",
+        text: "Specificity is counted as (inline, id, class, element). A higher number wins. !important overrides everything — avoid it.",
+      },
     ],
     summary: "Prefer classes. Reach for id and !important rarely.",
   },
@@ -191,15 +230,22 @@ button:hover { transform: translateY(-2px); }` },
     objectives: ["Understand box-sizing", "Predict element width"],
     tags: ["css", "layout"],
     body: [
-      { type: "code", lang: "css", code: `*, *::before, *::after { box-sizing: border-box; }
+      {
+        type: "code",
+        lang: "css",
+        code: `*, *::before, *::after { box-sizing: border-box; }
 
 .card {
   width: 320px;
   padding: 16px;
   border: 2px solid black;
   margin: 24px;
-}` },
-      { type: "p", text: "With border-box, width includes padding and border. With the default content-box, width is only the content — easy to make off-by-pixel mistakes." },
+}`,
+      },
+      {
+        type: "p",
+        text: "With border-box, width includes padding and border. With the default content-box, width is only the content — easy to make off-by-pixel mistakes.",
+      },
     ],
     summary: "Set box-sizing: border-box globally. Your math will always work.",
   },
@@ -215,13 +261,20 @@ button:hover { transform: translateY(-2px); }` },
     objectives: ["Align and distribute items", "Build a responsive nav"],
     tags: ["css", "flexbox"],
     body: [
-      { type: "code", lang: "css", code: `.row {
+      {
+        type: "code",
+        lang: "css",
+        code: `.row {
   display: flex;
   align-items: center;     /* vertical */
   justify-content: space-between; /* horizontal */
   gap: 1rem;
-}` },
-      { type: "p", text: "Flex containers control children with align-items, justify-content, and gap. Children control themselves with flex-grow, flex-shrink, flex-basis." },
+}`,
+      },
+      {
+        type: "p",
+        text: "Flex containers control children with align-items, justify-content, and gap. Children control themselves with flex-grow, flex-shrink, flex-basis.",
+      },
     ],
     summary: "Flexbox = one-dimensional layouts. Reach for it first.",
   },
@@ -237,13 +290,17 @@ button:hover { transform: translateY(-2px); }` },
     objectives: ["Build a bento-style dashboard", "Use auto-fit and minmax"],
     tags: ["css", "grid"],
     body: [
-      { type: "code", lang: "css", code: `.bento {
+      {
+        type: "code",
+        lang: "css",
+        code: `.bento {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
 .tall { grid-row: span 2; }
-.wide { grid-column: span 2; }` },
+.wide { grid-column: span 2; }`,
+      },
     ],
     summary: "Grid for 2D layouts. Combine with flexbox inside cells.",
   },
@@ -264,9 +321,13 @@ button:hover { transform: translateY(-2px); }` },
       "Run your first script",
     ],
     tags: ["js", "intro"],
-    analogy: "If HTML is the building and CSS is the paint, JavaScript is the electricity that turns the lights on.",
+    analogy:
+      "If HTML is the building and CSS is the paint, JavaScript is the electricity that turns the lights on.",
     body: [
-      { type: "p", text: "JavaScript is a programming language created in 1995 by Brendan Eich. It runs in every browser, on servers (Node.js), and even on edge functions. It is the most-used language on the planet — for good reason." },
+      {
+        type: "p",
+        text: "JavaScript is a programming language created in 1995 by Brendan Eich. It runs in every browser, on servers (Node.js), and even on edge functions. It is the most-used language on the planet — for good reason.",
+      },
       { type: "h", text: "Run your first line" },
       {
         type: "code",
@@ -281,7 +342,11 @@ button:hover { transform: translateY(-2px); }` },
   </body>
 </html>`,
       },
-      { type: "callout", tone: "tip", text: "Open the browser DevTools console (F12) and type 1 + 1. Anything you can do in JS, you can try there." },
+      {
+        type: "callout",
+        tone: "tip",
+        text: "Open the browser DevTools console (F12) and type 1 + 1. Anything you can do in JS, you can try there.",
+      },
     ],
     summary: "JavaScript runs everywhere and powers interactivity on every modern website.",
     related: ["how-js-works", "variables"],
@@ -295,11 +360,19 @@ button:hover { transform: translateY(-2px); }` },
     difficulty: "Beginner",
     estimatedTime: "10 min",
     prerequisites: ["what-is-javascript"],
-    objectives: ["Explain what an engine does", "Read a call stack", "Know what an execution context is"],
+    objectives: [
+      "Explain what an engine does",
+      "Read a call stack",
+      "Know what an execution context is",
+    ],
     tags: ["js", "engine"],
-    analogy: "Think of the JS engine as a chef. The call stack is the order ticket queue. Each ticket (function call) is finished before the next is started.",
+    analogy:
+      "Think of the JS engine as a chef. The call stack is the order ticket queue. Each ticket (function call) is finished before the next is started.",
     body: [
-      { type: "p", text: "A JavaScript engine (V8 in Chrome and Node, SpiderMonkey in Firefox, JavaScriptCore in Safari) reads your code, compiles it to fast machine code, and runs it." },
+      {
+        type: "p",
+        text: "A JavaScript engine (V8 in Chrome and Node, SpiderMonkey in Firefox, JavaScriptCore in Safari) reads your code, compiles it to fast machine code, and runs it.",
+      },
       { type: "h", text: "The call stack" },
       {
         type: "code",
@@ -313,7 +386,10 @@ function main() {
 }
 main(); // main() then greet() then back to main()`,
       },
-      { type: "p", text: "Every function call pushes a frame onto the call stack. When it returns, the frame pops off. JavaScript is single-threaded — only one frame runs at a time." },
+      {
+        type: "p",
+        text: "Every function call pushes a frame onto the call stack. When it returns, the frame pops off. JavaScript is single-threaded — only one frame runs at a time.",
+      },
     ],
     summary: "JS = engine + stack + a single thread of execution. We will add async on top later.",
   },
@@ -339,7 +415,11 @@ score = 10;
 // avoid var — function-scoped, hoisted, surprising
 var legacy = "old code";`,
       },
-      { type: "callout", tone: "tip", text: "Default to const. Switch to let only when you actually reassign. Never use var in new code." },
+      {
+        type: "callout",
+        tone: "tip",
+        text: "Default to const. Switch to let only when you actually reassign. Never use var in new code.",
+      },
       { type: "h", text: "Block scope" },
       {
         type: "code",
@@ -350,7 +430,10 @@ var legacy = "old code";`,
 // console.log(inside); // ReferenceError — block-scoped`,
       },
     ],
-    mistakes: ["Using var and getting unexpected hoisting bugs.", "Reassigning a const (TypeError)."],
+    mistakes: [
+      "Using var and getting unexpected hoisting bugs.",
+      "Reassigning a const (TypeError).",
+    ],
     bestPractices: ["const by default, let when needed, var never."],
     summary: "const → let → (never var). Block scope keeps your code predictable.",
   },
@@ -379,7 +462,10 @@ typeof Symbol();   // "symbol"
 typeof {a:1};      // "object"
 typeof function(){}; // "function"`,
       },
-      { type: "p", text: "Primitives are copied by value. Objects (and arrays, functions) are passed by reference." },
+      {
+        type: "p",
+        text: "Primitives are copied by value. Objects (and arrays, functions) are passed by reference.",
+      },
       {
         type: "code",
         lang: "js",
@@ -401,7 +487,7 @@ x.n; // 99`,
     track: "javascript",
     phase: "Foundations",
     title: "Type Coercion & Equality",
-    description: "Why \"5\" + 1 is \"51\" and why you should always use ===.",
+    description: 'Why "5" + 1 is "51" and why you should always use ===.',
     difficulty: "Beginner",
     estimatedTime: "8 min",
     prerequisites: ["data-types"],
@@ -420,7 +506,11 @@ true + 1;  // 2
 1 == "1";  // true   (coerces, surprising)
 1 === "1"; // false  (strict, predictable)`,
       },
-      { type: "callout", tone: "warn", text: "Always use === and !==. Coercion has too many edge cases." },
+      {
+        type: "callout",
+        tone: "warn",
+        text: "Always use === and !==. Coercion has too many edge cases.",
+      },
     ],
     summary: "Use ===. Convert types explicitly with Number(), String(), Boolean().",
   },
@@ -435,7 +525,11 @@ true + 1;  // 2
     difficulty: "Beginner",
     estimatedTime: "12 min",
     prerequisites: ["variables"],
-    objectives: ["Use arithmetic operators correctly", "Choose == vs ===", "Master logical operators"],
+    objectives: [
+      "Use arithmetic operators correctly",
+      "Choose == vs ===",
+      "Master logical operators",
+    ],
     tags: ["js", "operators"],
     analogy: "Operators are the verbs of programming. They tell values what to do with each other.",
     body: [
@@ -476,7 +570,11 @@ x **= 2;     // x = x ** 2 → 9`,
 3 < 7;      // true
 3 <= 2;     // false`,
       },
-      { type: "callout", tone: "warn", text: "Always use === and !==. == and != cause bugs through unexpected coercion." },
+      {
+        type: "callout",
+        tone: "warn",
+        text: "Always use === and !==. == and != cause bugs through unexpected coercion.",
+      },
       { type: "h", text: "Logical Operators" },
       {
         type: "code",
@@ -535,8 +633,16 @@ void 0;               // undefined (useful for IIFEs)
 let a = (1, 2, 3);    // a = 3 (returns last value)`,
       },
     ],
-    mistakes: ["Using == instead of ===", "Forgetting that && and || short-circuit", "Confusing nullish coalescing with logical OR"],
-    bestPractices: ["Use === for equality", "Use ?. for safe property access", "Use ?? for null/undefined defaults"],
+    mistakes: [
+      "Using == instead of ===",
+      "Forgetting that && and || short-circuit",
+      "Confusing nullish coalescing with logical OR",
+    ],
+    bestPractices: [
+      "Use === for equality",
+      "Use ?. for safe property access",
+      "Use ?? for null/undefined defaults",
+    ],
     practice: ["Write expressions using different operators", "Debug operator precedence issues"],
     summary: "Master operators to control data flow. Always ===, often && and ||, sometimes ??.",
   },
@@ -551,12 +657,20 @@ let a = (1, 2, 3);    // a = 3 (returns last value)`,
     difficulty: "Beginner",
     estimatedTime: "15 min",
     prerequisites: ["operators"],
-    objectives: ["Use if/else for decisions", "Choose switch for multiple options", "Master all loop types"],
+    objectives: [
+      "Use if/else for decisions",
+      "Choose switch for multiple options",
+      "Master all loop types",
+    ],
     tags: ["js", "control-flow"],
-    analogy: "Control flow is the traffic director. It decides which path your code takes and how many times to loop.",
+    analogy:
+      "Control flow is the traffic director. It decides which path your code takes and how many times to loop.",
     body: [
       { type: "h", text: "Statements vs Expressions" },
-      { type: "p", text: "Statements do things (if, for). Expressions produce values (1 + 2, func()). Most JavaScript is expressions." },
+      {
+        type: "p",
+        text: "Statements do things (if, for). Expressions produce values (1 + 2, func()). Most JavaScript is expressions.",
+      },
       { type: "h", text: "if / else if / else" },
       {
         type: "code",
@@ -666,10 +780,23 @@ outer: for (let i = 0; i < 3; i++) {
 }`,
       },
     ],
-    mistakes: ["Forgetting break in switch cases", "Infinite loops with while(true)", "Using for...in on arrays (use for...of)"],
-    bestPractices: ["Use for...of for arrays", "Use for...in for objects", "Prefer for...of over traditional for when possible"],
-    practice: ["Implement FizzBuzz with loops", "Convert if/else chains to switch", "Use break/continue in nested loops"],
-    summary: "if/else for decisions, for...of for arrays, while for unknown iterations. break/continue control flow.",
+    mistakes: [
+      "Forgetting break in switch cases",
+      "Infinite loops with while(true)",
+      "Using for...in on arrays (use for...of)",
+    ],
+    bestPractices: [
+      "Use for...of for arrays",
+      "Use for...in for objects",
+      "Prefer for...of over traditional for when possible",
+    ],
+    practice: [
+      "Implement FizzBuzz with loops",
+      "Convert if/else chains to switch",
+      "Use break/continue in nested loops",
+    ],
+    summary:
+      "if/else for decisions, for...of for arrays, while for unknown iterations. break/continue control flow.",
   },
 
   // ──────────────────── PHASE 5: FUNCTIONS ────────────────────
@@ -704,7 +831,8 @@ function greet(name = "friend", ...titles) {
 greet("Ada", "Dr.", "Prof."); // "Hello Dr. Prof. Ada"`,
       },
     ],
-    summary: "Default to arrow functions. Use named declarations for top-level, reusable functions.",
+    summary:
+      "Default to arrow functions. Use named declarations for top-level, reusable functions.",
   },
   {
     slug: "scope-and-closures",
@@ -721,7 +849,8 @@ greet("Ada", "Dr.", "Prof."); // "Hello Dr. Prof. Ada"`,
       "Use closures to keep private state",
     ],
     tags: ["js", "closures", "scope"],
-    analogy: "A closure is a backpack. When a function leaves home, it carries the variables it needs with it.",
+    analogy:
+      "A closure is a backpack. When a function leaves home, it carries the variables it needs with it.",
     body: [
       {
         type: "code",
@@ -735,11 +864,18 @@ next(); // 1
 next(); // 2
 next(); // 3`,
       },
-      { type: "p", text: "The inner arrow remembers count even after makeCounter has returned. That is a closure." },
+      {
+        type: "p",
+        text: "The inner arrow remembers count even after makeCounter has returned. That is a closure.",
+      },
       { type: "h", text: "Hoisting" },
-      { type: "p", text: "Function declarations and var are hoisted to the top of their scope. let and const are not — accessing them too early throws a ReferenceError (the temporal dead zone)." },
+      {
+        type: "p",
+        text: "Function declarations and var are hoisted to the top of their scope. let and const are not — accessing them too early throws a ReferenceError (the temporal dead zone).",
+      },
     ],
-    summary: "Closures = functions + the variables they captured. The basis for modules, callbacks, and React hooks.",
+    summary:
+      "Closures = functions + the variables they captured. The basis for modules, callbacks, and React hooks.",
     related: ["functions", "modules"],
   },
   {
@@ -753,7 +889,8 @@ next(); // 3`,
     prerequisites: ["functions"],
     objectives: ["Write recursive functions", "Use IIFE for encapsulation"],
     tags: ["js", "functions", "recursion"],
-    analogy: "Recursion is like Russian nesting dolls. Each call contains a smaller version of itself.",
+    analogy:
+      "Recursion is like Russian nesting dolls. Each call contains a smaller version of itself.",
     body: [
       { type: "h", text: "Recursion" },
       {
@@ -773,7 +910,11 @@ function fib(n) {
 }
 fib(6); // 8`,
       },
-      { type: "callout", tone: "warn", text: "Every recursive function needs a base case to stop infinite recursion." },
+      {
+        type: "callout",
+        tone: "warn",
+        text: "Every recursive function needs a base case to stop infinite recursion.",
+      },
       { type: "h", text: "IIFE (Immediately Invoked Function Expression)" },
       {
         type: "code",
@@ -793,25 +934,47 @@ fib(6); // 8`,
 // With parameters
 ((name) => console.log(\`Hi \${name}\`))("Ada");`,
       },
-      { type: "p", text: "IIFEs create private scope before ES6 modules. Still useful for one-off initialization." },
+      {
+        type: "p",
+        text: "IIFEs create private scope before ES6 modules. Still useful for one-off initialization.",
+      },
     ],
-    mistakes: ["Forgetting base case in recursion", "Stack overflow from deep recursion", "Trying to access IIFE variables outside"],
-    bestPractices: ["Use recursion for tree traversal, factorial, etc.", "Consider iterative solutions for deep recursion", "Use IIFE for module patterns"],
-    practice: ["Implement recursive sum of array", "Convert loop to recursion", "Create IIFE module"],
-    summary: "Recursion solves problems by breaking them into smaller identical problems. IIFE creates private scope immediately.",
+    mistakes: [
+      "Forgetting base case in recursion",
+      "Stack overflow from deep recursion",
+      "Trying to access IIFE variables outside",
+    ],
+    bestPractices: [
+      "Use recursion for tree traversal, factorial, etc.",
+      "Consider iterative solutions for deep recursion",
+      "Use IIFE for module patterns",
+    ],
+    practice: [
+      "Implement recursive sum of array",
+      "Convert loop to recursion",
+      "Create IIFE module",
+    ],
+    summary:
+      "Recursion solves problems by breaking them into smaller identical problems. IIFE creates private scope immediately.",
   },
   {
     slug: "this-call-apply-bind",
     track: "javascript",
     phase: "Functions",
     title: "this, call, apply, bind",
-    description: "The most confusing part of JavaScript — what 'this' refers to and how to control it.",
+    description:
+      "The most confusing part of JavaScript — what 'this' refers to and how to control it.",
     difficulty: "Intermediate",
     estimatedTime: "12 min",
     prerequisites: ["functions"],
-    objectives: ["Understand this binding rules", "Use call/apply/bind to set this", "Master arrow vs regular functions"],
+    objectives: [
+      "Understand this binding rules",
+      "Use call/apply/bind to set this",
+      "Master arrow vs regular functions",
+    ],
     tags: ["js", "functions", "this"],
-    analogy: "'this' is like a pronoun. It refers to whoever called the function, unless you explicitly set it.",
+    analogy:
+      "'this' is like a pronoun. It refers to whoever called the function, unless you explicitly set it.",
     body: [
       { type: "h", text: "this Binding Rules" },
       {
@@ -850,7 +1013,11 @@ btn.addEventListener("click", function() {
 user.greet();  // "Hi, I'm " (this.name undefined)
 user.greet2(); // "Hi, I'm Ada"`,
       },
-      { type: "callout", tone: "tip", text: "Arrow functions don't have their own this. They inherit from parent scope." },
+      {
+        type: "callout",
+        tone: "tip",
+        text: "Arrow functions don't have their own this. They inherit from parent scope.",
+      },
       { type: "h", text: "call, apply, bind" },
       {
         type: "code",
@@ -874,11 +1041,26 @@ const greetAda = greet.bind(ada);
 greetAda("Hey");             // "Hey, I'm Ada"
 greetAda.call(eve, "Nope");  // still "Nope, I'm Ada"`,
       },
-      { type: "p", text: "call/apply invoke immediately. bind creates a new function with permanent this." },
+      {
+        type: "p",
+        text: "call/apply invoke immediately. bind creates a new function with permanent this.",
+      },
     ],
-    mistakes: ["Using arrow function when you need this", "Losing this in callbacks", "Confusing call/apply (apply takes array)"],
-    bestPractices: ["Use arrow functions by default", "Use bind for event handlers", "Use call/apply for borrowing methods"],
-    practice: ["Fix broken this in object methods", "Use bind to create specialized functions", "Implement method borrowing"],
+    mistakes: [
+      "Using arrow function when you need this",
+      "Losing this in callbacks",
+      "Confusing call/apply (apply takes array)",
+    ],
+    bestPractices: [
+      "Use arrow functions by default",
+      "Use bind for event handlers",
+      "Use call/apply for borrowing methods",
+    ],
+    practice: [
+      "Fix broken this in object methods",
+      "Use bind to create specialized functions",
+      "Implement method borrowing",
+    ],
     summary: "this = caller (except arrows). call/apply/bind control it explicitly.",
   },
   {
@@ -890,9 +1072,14 @@ greetAda.call(eve, "Nope");  // still "Nope, I'm Ada"`,
     difficulty: "Intermediate",
     estimatedTime: "10 min",
     prerequisites: ["functions"],
-    objectives: ["Write functions that accept callbacks", "Create functions that return functions", "Understand pure functions"],
+    objectives: [
+      "Write functions that accept callbacks",
+      "Create functions that return functions",
+      "Understand pure functions",
+    ],
     tags: ["js", "functions", "fp"],
-    analogy: "Higher-order functions are function factories. They produce or consume other functions.",
+    analogy:
+      "Higher-order functions are function factories. They produce or consume other functions.",
     body: [
       { type: "h", text: "Functions as Arguments (Callbacks)" },
       {
@@ -945,12 +1132,29 @@ const log = (msg) => console.log(msg);
 // Pure alternative
 const pureLog = (msg) => msg; // just return, let caller log`,
       },
-      { type: "callout", tone: "tip", text: "Pure functions are predictable, testable, and composable." },
+      {
+        type: "callout",
+        tone: "tip",
+        text: "Pure functions are predictable, testable, and composable.",
+      },
     ],
-    mistakes: ["Callback hell (deep nesting)", "Forgetting to return in callbacks", "Side effects in pure functions"],
-    bestPractices: ["Keep callbacks simple", "Use promises/async for complex async callbacks", "Prefer pure functions"],
-    practice: ["Implement custom map/filter", "Create function factories", "Refactor impure functions"],
-    summary: "Higher-order functions enable abstraction. Callbacks handle async. Pure functions are reliable.",
+    mistakes: [
+      "Callback hell (deep nesting)",
+      "Forgetting to return in callbacks",
+      "Side effects in pure functions",
+    ],
+    bestPractices: [
+      "Keep callbacks simple",
+      "Use promises/async for complex async callbacks",
+      "Prefer pure functions",
+    ],
+    practice: [
+      "Implement custom map/filter",
+      "Create function factories",
+      "Refactor impure functions",
+    ],
+    summary:
+      "Higher-order functions enable abstraction. Callbacks handle async. Pure functions are reliable.",
   },
   {
     slug: "strings",
@@ -961,9 +1165,14 @@ const pureLog = (msg) => msg; // just return, let caller log`,
     difficulty: "Intermediate",
     estimatedTime: "15 min",
     prerequisites: ["variables"],
-    objectives: ["Use string methods effectively", "Handle Unicode correctly", "Write basic regular expressions"],
+    objectives: [
+      "Use string methods effectively",
+      "Handle Unicode correctly",
+      "Write basic regular expressions",
+    ],
     tags: ["js", "strings", "regex"],
-    analogy: "Strings are like sentences. Methods are grammar rules. Regex is the thesaurus that finds patterns.",
+    analogy:
+      "Strings are like sentences. Methods are grammar rules. Regex is the thesaurus that finds patterns.",
     body: [
       { type: "h", text: "Template Literals" },
       {
@@ -1070,12 +1279,29 @@ regex1.test("HELLO world"); // true
 /\\s+/.test(" ");          // whitespace
 /[a-z]+/i.test("Hello");   // letters`,
       },
-      { type: "callout", tone: "tip", text: "Use regex literals (/pattern/flags) for static patterns. Use RegExp constructor for dynamic patterns." },
+      {
+        type: "callout",
+        tone: "tip",
+        text: "Use regex literals (/pattern/flags) for static patterns. Use RegExp constructor for dynamic patterns.",
+      },
     ],
-    mistakes: ["Forgetting to escape special regex chars", "Using == instead of === with strings", "Confusing slice/substring/substr"],
-    bestPractices: ["Use template literals for complex strings", "Normalize Unicode when comparing", "Test regex patterns separately"],
-    practice: ["Parse a CSV string", "Validate email format with regex", "Implement string utilities"],
-    summary: "Strings are immutable sequences. Use methods for manipulation, regex for patterns, Unicode for internationalization.",
+    mistakes: [
+      "Forgetting to escape special regex chars",
+      "Using == instead of === with strings",
+      "Confusing slice/substring/substr",
+    ],
+    bestPractices: [
+      "Use template literals for complex strings",
+      "Normalize Unicode when comparing",
+      "Test regex patterns separately",
+    ],
+    practice: [
+      "Parse a CSV string",
+      "Validate email format with regex",
+      "Implement string utilities",
+    ],
+    summary:
+      "Strings are immutable sequences. Use methods for manipulation, regex for patterns, Unicode for internationalization.",
   },
   {
     slug: "numbers",
@@ -1189,10 +1415,23 @@ function randomBetween(min, max) {
 randomBetween(5, 15); // 5 to 15`,
       },
     ],
-    mistakes: ["Comparing floats with ===", "Using Math.round for money", "Mixing BigInt with Number"],
-    bestPractices: ["Use Number.isNaN() over isNaN()", "Store money as integers", "Use toFixed() for display"],
-    practice: ["Implement random dice roller", "Fix floating-point comparison", "Create BigInt calculator"],
-    summary: "Numbers are 64-bit floats. Use BigInt for big integers. Watch precision with money/floats.",
+    mistakes: [
+      "Comparing floats with ===",
+      "Using Math.round for money",
+      "Mixing BigInt with Number",
+    ],
+    bestPractices: [
+      "Use Number.isNaN() over isNaN()",
+      "Store money as integers",
+      "Use toFixed() for display",
+    ],
+    practice: [
+      "Implement random dice roller",
+      "Fix floating-point comparison",
+      "Create BigInt calculator",
+    ],
+    summary:
+      "Numbers are 64-bit floats. Use BigInt for big integers. Watch precision with money/floats.",
   },
 
   // ──────────────────── PHASE 8: ARRAYS ────────────────────
@@ -1220,9 +1459,14 @@ nums.find(n => n > 3);      // 4
 nums.some(n => n > 4);      // true
 nums.every(n => n > 0);     // true`,
       },
-      { type: "callout", tone: "tip", text: "map/filter/reduce return NEW arrays. push/pop/sort mutate the original. Prefer immutable methods." },
+      {
+        type: "callout",
+        tone: "tip",
+        text: "map/filter/reduce return NEW arrays. push/pop/sort mutate the original. Prefer immutable methods.",
+      },
     ],
-    summary: "map = transform, filter = subset, reduce = combine. These three replace 90% of for loops.",
+    summary:
+      "map = transform, filter = subset, reduce = combine. These three replace 90% of for loops.",
   },
 
   // ──────────────────── PHASE 5: OBJECTS ────────────────────
@@ -1231,7 +1475,8 @@ nums.every(n => n > 0);     // true`,
     track: "javascript",
     phase: "Objects",
     title: "Objects, Destructuring & Spread",
-    description: "Modern object patterns: destructuring, spread/rest, optional chaining, nullish coalescing.",
+    description:
+      "Modern object patterns: destructuring, spread/rest, optional chaining, nullish coalescing.",
     difficulty: "Beginner",
     estimatedTime: "12 min",
     prerequisites: ["data-types"],
@@ -1264,9 +1509,14 @@ const updated = { ...user, age: 30 };`,
     difficulty: "Intermediate",
     estimatedTime: "15 min",
     prerequisites: ["variables"],
-    objectives: ["Create and manipulate dates", "Format dates for different locales", "Handle time zones"],
+    objectives: [
+      "Create and manipulate dates",
+      "Format dates for different locales",
+      "Handle time zones",
+    ],
     tags: ["js", "dates", "intl"],
-    analogy: "Dates are like addresses. They need formatting for different countries, just like addresses do.",
+    analogy:
+      "Dates are like addresses. They need formatting for different countries, just like addresses do.",
     body: [
       { type: "h", text: "Date Object" },
       {
@@ -1396,12 +1646,29 @@ const german = new Intl.Collator("de");
 ["äpfel", "Zebra", "apfel"].sort(german.compare);
 // ["äpfel", "apfel", "Zebra"]`,
       },
-      { type: "callout", tone: "warn", text: "Date objects are mutable. Use new Date(date) to clone. Avoid Date.parse() — use new Date(string)." },
+      {
+        type: "callout",
+        tone: "warn",
+        text: "Date objects are mutable. Use new Date(date) to clone. Avoid Date.parse() — use new Date(string).",
+      },
     ],
-    mistakes: ["Using Date.parse() for ISO strings", "Assuming local timezone", "Mutating date objects directly"],
-    bestPractices: ["Use ISO strings for dates", "Specify timeZone in Intl formatters", "Clone dates before modifying"],
-    practice: ["Build a date picker component", "Format dates for multiple locales", "Calculate age from birthday"],
-    summary: "Use Date for dates, Intl.* for formatting. Always specify locales and time zones explicitly.",
+    mistakes: [
+      "Using Date.parse() for ISO strings",
+      "Assuming local timezone",
+      "Mutating date objects directly",
+    ],
+    bestPractices: [
+      "Use ISO strings for dates",
+      "Specify timeZone in Intl formatters",
+      "Clone dates before modifying",
+    ],
+    practice: [
+      "Build a date picker component",
+      "Format dates for multiple locales",
+      "Calculate age from birthday",
+    ],
+    summary:
+      "Use Date for dates, Intl.* for formatting. Always specify locales and time zones explicitly.",
   },
 
   // ──────────────────── PHASE 8 — DOM ────────────────────
@@ -1472,7 +1739,8 @@ document.querySelector("ul").addEventListener("click", (e) => {
     prerequisites: ["how-js-works"],
     objectives: ["Explain stack + task queue + microtasks", "Predict execution order"],
     tags: ["js", "async", "event-loop"],
-    analogy: "The call stack is one cashier. The task queue is the line. The event loop calls the next person only when the cashier is free.",
+    analogy:
+      "The call stack is one cashier. The task queue is the line. The event loop calls the next person only when the cashier is free.",
     body: [
       {
         type: "code",
@@ -1495,7 +1763,11 @@ console.log("4");
     difficulty: "Intermediate",
     estimatedTime: "15 min",
     prerequisites: ["event-loop"],
-    objectives: ["Read and write a Promise", "Use async/await with try/catch", "Run things in parallel with Promise.all"],
+    objectives: [
+      "Read and write a Promise",
+      "Use async/await with try/catch",
+      "Run things in parallel with Promise.all",
+    ],
     tags: ["js", "async", "promises"],
     body: [
       {
@@ -1516,9 +1788,14 @@ console.log("4");
 // Run in parallel
 const [a, b] = await Promise.all([loadUser(1), loadUser(2)]);`,
       },
-      { type: "callout", tone: "tip", text: "await pauses the function, not the page. Other code keeps running." },
+      {
+        type: "callout",
+        tone: "tip",
+        text: "await pauses the function, not the page. Other code keeps running.",
+      },
     ],
-    summary: "async/await = Promises that read like sync code. Wrap awaits in try/catch and parallelize with Promise.all.",
+    summary:
+      "async/await = Promises that read like sync code. Wrap awaits in try/catch and parallelize with Promise.all.",
   },
   {
     slug: "fetch-api",
@@ -1576,7 +1853,10 @@ class Dog extends Animal {
 }
 new Dog("Rex").speak(); // "Rex barks."`,
       },
-      { type: "p", text: "Under the hood there is no class — just objects linked to other objects via [[Prototype]]. class is friendlier syntax for the same thing." },
+      {
+        type: "p",
+        text: "Under the hood there is no class — just objects linked to other objects via [[Prototype]]. class is friendlier syntax for the same thing.",
+      },
     ],
     summary: "class is sugar over prototypes. Use it; just know what is happening underneath.",
   },
@@ -1609,7 +1889,8 @@ export default function multiply(a, b) { return a * b; }`,
 const { default: Chart } = await import("./chart.js");`,
       },
     ],
-    summary: "Modules let you split code into files. Use named exports by default; default exports for the main thing of a file.",
+    summary:
+      "Modules let you split code into files. Use named exports by default; default exports for the main thing of a file.",
   },
 
   // ──────────────────── PHASE 13–19 (compact lessons) ────────────────────
@@ -1618,7 +1899,8 @@ const { default: Chart } = await import("./chart.js");`,
     track: "javascript",
     phase: "Functional Programming",
     title: "Functional Patterns",
-    description: "Immutability, composition, currying, partial application — used every day in React.",
+    description:
+      "Immutability, composition, currying, partial application — used every day in React.",
     difficulty: "Intermediate",
     estimatedTime: "12 min",
     prerequisites: ["arrays", "scope-and-closures"],
@@ -1642,7 +1924,8 @@ const add5 = add(5);
 add5(3); // 8`,
       },
     ],
-    summary: "Pure functions + immutability = code that is easier to test, reason about, and change.",
+    summary:
+      "Pure functions + immutability = code that is easier to test, reason about, and change.",
   },
   {
     slug: "error-handling",
@@ -1717,15 +2000,22 @@ document.querySelectorAll(".reveal").forEach(el => io.observe(el));`,
     objectives: ["Pick the right HTTP method", "Send and parse JSON"],
     tags: ["js", "http"],
     body: [
-      { type: "list", items: [
-        "GET — read",
-        "POST — create",
-        "PUT — replace",
-        "PATCH — partial update",
-        "DELETE — remove",
-      ] },
-      { type: "code", lang: "js", code: `const data = JSON.parse('{"a":1}'); // string → object
-const text = JSON.stringify(data);   // object → string` },
+      {
+        type: "list",
+        items: [
+          "GET — read",
+          "POST — create",
+          "PUT — replace",
+          "PATCH — partial update",
+          "DELETE — remove",
+        ],
+      },
+      {
+        type: "code",
+        lang: "js",
+        code: `const data = JSON.parse('{"a":1}'); // string → object
+const text = JSON.stringify(data);   // object → string`,
+      },
     ],
     summary: "REST = nouns in URLs, verbs in HTTP methods. JSON is the data format.",
   },
@@ -1751,7 +2041,10 @@ const text = JSON.stringify(data);   // object → string` },
   "devDependencies": { "vite": "^7.0.0" }
 }`,
       },
-      { type: "p", text: "A bundler (Vite, esbuild) takes your many small files and produces a few optimized files for production." },
+      {
+        type: "p",
+        text: "A bundler (Vite, esbuild) takes your many small files and produces a few optimized files for production.",
+      },
     ],
     summary: "npm installs packages. Vite bundles them. Scripts in package.json run everything.",
   },
@@ -1764,7 +2057,11 @@ const text = JSON.stringify(data);   // object → string` },
     difficulty: "Intermediate",
     estimatedTime: "10 min",
     prerequisites: ["modules"],
-    objectives: ["Use top-level await in modules", "Use #private fields", "Know toSorted, toReversed, with"],
+    objectives: [
+      "Use top-level await in modules",
+      "Use #private fields",
+      "Know toSorted, toReversed, with",
+    ],
     tags: ["js", "modern"],
     body: [
       {
@@ -1789,20 +2086,28 @@ a.with(0, 99);  // [99,1,2]
 const copy = structuredClone({ a: { b: 1 } });`,
       },
     ],
-    summary: "JavaScript keeps shipping useful things. Learn the new immutable array methods first.",
+    summary:
+      "JavaScript keeps shipping useful things. Learn the new immutable array methods first.",
   },
   {
     slug: "advanced-language-features",
     track: "javascript",
     phase: "Advanced Language Features",
     title: "Symbol, Iterators, Generators & Collections",
-    description: "Advanced JavaScript features: unique identifiers, custom iteration, async generators, and modern collections.",
+    description:
+      "Advanced JavaScript features: unique identifiers, custom iteration, async generators, and modern collections.",
     difficulty: "Advanced",
     estimatedTime: "20 min",
     prerequisites: ["objects", "functions"],
-    objectives: ["Use Symbol for unique properties", "Create custom iterators", "Work with Sets/Maps", "Understand WeakMap/WeakSet"],
+    objectives: [
+      "Use Symbol for unique properties",
+      "Create custom iterators",
+      "Work with Sets/Maps",
+      "Understand WeakMap/WeakSet",
+    ],
     tags: ["js", "advanced", "iterators", "generators"],
-    analogy: "These are the power tools. You don't need them every day, but when you do, they're indispensable.",
+    analogy:
+      "These are the power tools. You don't need them every day, but when you do, they're indispensable.",
     body: [
       { type: "h", text: "Symbol" },
       {
@@ -1994,10 +2299,23 @@ proxy.a;      // "Getting a"
 proxy.b = 3;  // "Setting b to 3"`,
       },
     ],
-    mistakes: ["Using objects as Map keys (use Map)", "Forgetting Symbol properties are hidden", "Infinite loops in generators"],
-    bestPractices: ["Use Map over objects for complex keys", "Use WeakMap for private data", "Use Proxy for validation/logging"],
-    practice: ["Implement LRU cache with Map", "Create observable object with Proxy", "Build custom collection with Symbol.iterator"],
-    summary: "Symbol for uniqueness, iterators for custom loops, generators for sequences, collections for advanced data structures.",
+    mistakes: [
+      "Using objects as Map keys (use Map)",
+      "Forgetting Symbol properties are hidden",
+      "Infinite loops in generators",
+    ],
+    bestPractices: [
+      "Use Map over objects for complex keys",
+      "Use WeakMap for private data",
+      "Use Proxy for validation/logging",
+    ],
+    practice: [
+      "Implement LRU cache with Map",
+      "Create observable object with Proxy",
+      "Build custom collection with Symbol.iterator",
+    ],
+    summary:
+      "Symbol for uniqueness, iterators for custom loops, generators for sequences, collections for advanced data structures.",
   },
   {
     slug: "memory-management",
@@ -2010,7 +2328,8 @@ proxy.b = 3;  // "Setting b to 3"`,
     prerequisites: ["objects", "functions"],
     objectives: ["Understand stack vs heap", "Identify memory leaks", "Use performance tools"],
     tags: ["js", "memory", "performance"],
-    analogy: "Memory is like a closet. Stack is your daily clothes. Heap is storage. GC is the cleaner who removes unused items.",
+    analogy:
+      "Memory is like a closet. Stack is your daily clothes. Heap is storage. GC is the cleaner who removes unused items.",
     body: [
       { type: "h", text: "Stack vs Heap" },
       {
@@ -2154,10 +2473,23 @@ function debounce(func, delay) {
 }`,
       },
     ],
-    mistakes: ["Creating circular references", "Forgetting to clean up event listeners", "Holding references to removed DOM elements"],
-    bestPractices: ["Use WeakMap/WeakSet for caches", "Clean up timers and listeners", "Profile memory usage regularly"],
-    practice: ["Fix a memory leak in event handlers", "Implement object pooling", "Profile a memory-intensive operation"],
-    summary: "Stack for locals, heap for objects. GC cleans unreachable objects. Watch for leaks in closures, events, and globals.",
+    mistakes: [
+      "Creating circular references",
+      "Forgetting to clean up event listeners",
+      "Holding references to removed DOM elements",
+    ],
+    bestPractices: [
+      "Use WeakMap/WeakSet for caches",
+      "Clean up timers and listeners",
+      "Profile memory usage regularly",
+    ],
+    practice: [
+      "Fix a memory leak in event handlers",
+      "Implement object pooling",
+      "Profile a memory-intensive operation",
+    ],
+    summary:
+      "Stack for locals, heap for objects. GC cleans unreachable objects. Watch for leaks in closures, events, and globals.",
   },
   {
     slug: "testing-fundamentals",
@@ -2168,18 +2500,26 @@ function debounce(func, delay) {
     difficulty: "Intermediate",
     estimatedTime: "15 min",
     prerequisites: ["functions"],
-    objectives: ["Write unit tests", "Use describe/it blocks", "Test async code", "Mock dependencies"],
+    objectives: [
+      "Write unit tests",
+      "Use describe/it blocks",
+      "Test async code",
+      "Mock dependencies",
+    ],
     tags: ["js", "testing", "vitest"],
     analogy: "Tests are like quality control inspectors. They catch bugs before they reach users.",
     body: [
       { type: "h", text: "Why Test?" },
-      { type: "list", items: [
-        "Catch bugs early",
-        "Document expected behavior",
-        "Enable refactoring with confidence",
-        "Prevent regressions",
-        "Improve code design",
-      ] },
+      {
+        type: "list",
+        items: [
+          "Catch bugs early",
+          "Document expected behavior",
+          "Enable refactoring with confidence",
+          "Prevent regressions",
+          "Improve code design",
+        ],
+      },
       { type: "h", text: "Vitest Setup" },
       {
         type: "code",
@@ -2340,18 +2680,37 @@ describe("User service", () => {
       },
       { type: "h", text: "TDD: Test-Driven Development" },
       {
-        type: "list", items: [
+        type: "list",
+        items: [
           "Write test first (it will fail)",
           "Write minimal code to pass test",
           "Refactor while keeping tests green",
           "Repeat for each feature",
-        ] },
-      { type: "callout", tone: "tip", text: "Tests are executable documentation. Write them as if explaining to future-you." },
+        ],
+      },
+      {
+        type: "callout",
+        tone: "tip",
+        text: "Tests are executable documentation. Write them as if explaining to future-you.",
+      },
     ],
-    mistakes: ["Testing implementation details", "Not testing edge cases", "Mocking everything (test integration too)"],
-    bestPractices: ["Test behavior, not implementation", "Use descriptive test names", "Keep tests fast and isolated"],
-    practice: ["Write tests for a calculator function", "Test async API calls", "Mock external dependencies"],
-    summary: "Tests catch bugs, document behavior, and enable fearless refactoring. Use Vitest for modern, fast testing.",
+    mistakes: [
+      "Testing implementation details",
+      "Not testing edge cases",
+      "Mocking everything (test integration too)",
+    ],
+    bestPractices: [
+      "Test behavior, not implementation",
+      "Use descriptive test names",
+      "Keep tests fast and isolated",
+    ],
+    practice: [
+      "Write tests for a calculator function",
+      "Test async API calls",
+      "Mock external dependencies",
+    ],
+    summary:
+      "Tests catch bugs, document behavior, and enable fearless refactoring. Use Vitest for modern, fast testing.",
   },
   // ──────────────────── 20% for React ────────────────────
   {
@@ -2366,21 +2725,29 @@ describe("User service", () => {
     objectives: ["Identify the JS features React leans on hardest"],
     tags: ["js", "react-prep"],
     body: [
-      { type: "list", items: [
-        "Arrow functions — every component and handler.",
-        "Destructuring — props and hooks like const [count, setCount] = useState(0).",
-        "Spread / rest — passing props, immutable updates.",
-        "Template literals — class names and dynamic strings.",
-        "map / filter — rendering lists.",
-        "Optional chaining + nullish coalescing — safe data access.",
-        "Modules (import/export) — every file.",
-        "Promises + async/await — data fetching, effects.",
-        "Closures — useState and useEffect rely on them.",
-        "Ternary + && short-circuit — conditional JSX.",
-      ] },
-      { type: "callout", tone: "tip", text: "Master these ten before opening a React tutorial. You will fly." },
+      {
+        type: "list",
+        items: [
+          "Arrow functions — every component and handler.",
+          "Destructuring — props and hooks like const [count, setCount] = useState(0).",
+          "Spread / rest — passing props, immutable updates.",
+          "Template literals — class names and dynamic strings.",
+          "map / filter — rendering lists.",
+          "Optional chaining + nullish coalescing — safe data access.",
+          "Modules (import/export) — every file.",
+          "Promises + async/await — data fetching, effects.",
+          "Closures — useState and useEffect rely on them.",
+          "Ternary + && short-circuit — conditional JSX.",
+        ],
+      },
+      {
+        type: "callout",
+        tone: "tip",
+        text: "Master these ten before opening a React tutorial. You will fly.",
+      },
     ],
-    summary: "Arrow funcs, destructuring, spread, map, async/await, closures, modules. That is React's JavaScript.",
+    summary:
+      "Arrow funcs, destructuring, spread, map, async/await, closures, modules. That is React's JavaScript.",
     related: ["functions", "arrays", "objects", "promises-async-await", "modules"],
   },
   {
@@ -2388,24 +2755,36 @@ describe("User service", () => {
     track: "javascript",
     phase: "Real Projects",
     title: "Counter App — Your First Interactive App",
-    description: "Build a counter with increment/decrement buttons, local storage persistence, and keyboard shortcuts.",
+    description:
+      "Build a counter with increment/decrement buttons, local storage persistence, and keyboard shortcuts.",
     difficulty: "Beginner",
     estimatedTime: "30 min",
     prerequisites: ["dom-basics", "events"],
-    objectives: ["Create interactive UI", "Handle user events", "Persist state with localStorage", "Add keyboard shortcuts"],
+    objectives: [
+      "Create interactive UI",
+      "Handle user events",
+      "Persist state with localStorage",
+      "Add keyboard shortcuts",
+    ],
     tags: ["js", "project", "dom", "localStorage"],
     body: [
       { type: "h", text: "Project Overview" },
-      { type: "p", text: "A counter app teaches the fundamentals of interactive web development: DOM manipulation, event handling, and state persistence." },
+      {
+        type: "p",
+        text: "A counter app teaches the fundamentals of interactive web development: DOM manipulation, event handling, and state persistence.",
+      },
       { type: "h", text: "Features to Implement" },
-      { type: "list", items: [
-        "Increment and decrement buttons",
-        "Display current count",
-        "Reset to zero",
-        "Persist count in localStorage",
-        "Keyboard shortcuts (arrow keys)",
-        "Visual feedback on interactions",
-      ] },
+      {
+        type: "list",
+        items: [
+          "Increment and decrement buttons",
+          "Display current count",
+          "Reset to zero",
+          "Persist count in localStorage",
+          "Keyboard shortcuts (arrow keys)",
+          "Visual feedback on interactions",
+        ],
+      },
       { type: "h", text: "HTML Structure" },
       {
         type: "code",
@@ -2524,45 +2903,73 @@ button:active {
 }`,
       },
       { type: "h", text: "Enhancements" },
-      { type: "list", items: [
-        "Add animation when count changes",
-        "Implement step size (increment by 5, 10, etc.)",
-        "Add sound effects",
-        "Create multiple counters",
-        "Add count history/log",
-      ] },
-      { type: "callout", tone: "tip", text: "Start simple, then add features incrementally. Test each addition thoroughly." },
+      {
+        type: "list",
+        items: [
+          "Add animation when count changes",
+          "Implement step size (increment by 5, 10, etc.)",
+          "Add sound effects",
+          "Create multiple counters",
+          "Add count history/log",
+        ],
+      },
+      {
+        type: "callout",
+        tone: "tip",
+        text: "Start simple, then add features incrementally. Test each addition thoroughly.",
+      },
     ],
-    mistakes: ["Forgetting to update display after state changes", "Not handling localStorage errors", "Adding listeners multiple times"],
-    bestPractices: ["Separate concerns (state, UI, events)", "Use semantic HTML", "Handle edge cases (invalid localStorage)"],
+    mistakes: [
+      "Forgetting to update display after state changes",
+      "Not handling localStorage errors",
+      "Adding listeners multiple times",
+    ],
+    bestPractices: [
+      "Separate concerns (state, UI, events)",
+      "Use semantic HTML",
+      "Handle edge cases (invalid localStorage)",
+    ],
     practice: ["Add a maximum/minimum limit", "Implement undo functionality", "Add count presets"],
-    summary: "Counter app demonstrates core web development: state management, DOM manipulation, events, and persistence.",
+    summary:
+      "Counter app demonstrates core web development: state management, DOM manipulation, events, and persistence.",
   },
   {
     slug: "project-todo-app",
     track: "javascript",
     phase: "Real Projects",
     title: "Todo App — Task Management System",
-    description: "Build a complete todo application with add, edit, delete, filter, and local storage.",
+    description:
+      "Build a complete todo application with add, edit, delete, filter, and local storage.",
     difficulty: "Intermediate",
     estimatedTime: "60 min",
     prerequisites: ["arrays", "objects", "dom-basics", "events"],
-    objectives: ["Manage complex state", "Implement CRUD operations", "Use array methods", "Filter and search"],
+    objectives: [
+      "Manage complex state",
+      "Implement CRUD operations",
+      "Use array methods",
+      "Filter and search",
+    ],
     tags: ["js", "project", "crud", "arrays"],
     body: [
       { type: "h", text: "Project Overview" },
-      { type: "p", text: "A todo app is the perfect project for learning data manipulation, state management, and user interactions." },
+      {
+        type: "p",
+        text: "A todo app is the perfect project for learning data manipulation, state management, and user interactions.",
+      },
       { type: "h", text: "Features" },
-      { type: "list", items: [
-        "Add new todos",
-        "Mark todos complete/incomplete",
-        "Edit todo text",
-        "Delete todos",
-        "Filter by status (all/active/completed)",
-        "Clear completed todos",
-        "Persist to localStorage",
-        "Show remaining count",
-      ] },
+      {
+        type: "list",
+        items: [
+          "Add new todos",
+          "Mark todos complete/incomplete",
+          "Edit todo text",
+          "Delete todos",
+          "Filter by status (all/active/completed)",
+          "Clear completed todos",
+          "Persist to localStorage",
+          "Show remaining count",
+        ],
+      },
       { type: "h", text: "Data Structure" },
       {
         type: "code",
@@ -2718,19 +3125,47 @@ function loadTodos() {
 loadTodos();
 render();`,
       },
-      { type: "callout", tone: "tip", text: "Use array methods (map, filter, find) extensively. Event delegation keeps code clean." },
+      {
+        type: "callout",
+        tone: "tip",
+        text: "Use array methods (map, filter, find) extensively. Event delegation keeps code clean.",
+      },
     ],
-    mistakes: ["Mutating state directly", "Not saving after state changes", "Inefficient re-renders"],
-    bestPractices: ["Keep state immutable", "Use event delegation", "Separate concerns (data, UI, events)"],
+    mistakes: [
+      "Mutating state directly",
+      "Not saving after state changes",
+      "Inefficient re-renders",
+    ],
+    bestPractices: [
+      "Keep state immutable",
+      "Use event delegation",
+      "Separate concerns (data, UI, events)",
+    ],
     practice: ["Add due dates", "Implement drag-and-drop reordering", "Add categories/tags"],
-    summary: "Todo app covers CRUD operations, filtering, persistence, and complex state management.",
+    summary:
+      "Todo app covers CRUD operations, filtering, persistence, and complex state management.",
   },
 ];
 
 export const TRACKS = [
-  { id: "html", title: "HTML", color: "var(--color-warning)", description: "Structure of the web." },
-  { id: "css", title: "CSS", color: "var(--color-accent-2)", description: "Style, layout, motion." },
-  { id: "javascript", title: "JavaScript", color: "var(--color-accent)", description: "Behavior. The big one." },
+  {
+    id: "html",
+    title: "HTML",
+    color: "var(--color-warning)",
+    description: "Structure of the web.",
+  },
+  {
+    id: "css",
+    title: "CSS",
+    color: "var(--color-accent-2)",
+    description: "Style, layout, motion.",
+  },
+  {
+    id: "javascript",
+    title: "JavaScript",
+    color: "var(--color-accent)",
+    description: "Behavior. The big one.",
+  },
 ] as const;
 
 export function lessonsByTrack(track: "html" | "css" | "javascript") {

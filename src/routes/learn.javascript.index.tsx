@@ -22,12 +22,15 @@ function JavaScriptIndex() {
       </aside>
       <div className="px-4 py-10 md:py-12">
         <div className="mb-8 max-w-2xl">
-          <span className="chip"><BookOpen className="h-3 w-3" /> JavaScript</span>
+          <span className="chip">
+            <BookOpen className="h-3 w-3" /> JavaScript
+          </span>
           <h1 className="mt-3 text-4xl font-black tracking-tight md:text-5xl">
             JavaScript — from zero to advanced
           </h1>
           <p className="mt-3 text-muted-foreground">
-            Every topic, in the right order. Each lesson is short, opinionated, and ends with practice.
+            Every topic, in the right order. Each lesson is short, opinionated, and ends with
+            practice.
           </p>
         </div>
         <div className="space-y-8">
@@ -44,7 +47,9 @@ function JavaScriptIndex() {
                   >
                     <div className="flex items-center gap-2">
                       <span className="chip">{l.difficulty}</span>
-                      <span className="font-mono text-[10px] text-muted-foreground">{l.estimatedTime}</span>
+                      <span className="font-mono text-[10px] text-muted-foreground">
+                        {l.estimatedTime}
+                      </span>
                     </div>
                     <h3 className="text-base font-extrabold tracking-tight">{l.title}</h3>
                     <p className="text-sm text-muted-foreground">{l.description}</p>

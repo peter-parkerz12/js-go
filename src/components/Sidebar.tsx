@@ -42,7 +42,9 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
                 {Meta.label}
               </span>
               <span className="flex items-center gap-2">
-                <span className="font-mono text-[10px] text-muted-foreground">{done}/{total}</span>
+                <span className="font-mono text-[10px] text-muted-foreground">
+                  {done}/{total}
+                </span>
                 <ChevronDown className={`h-4 w-4 transition ${isOpen ? "rotate-180" : ""}`} />
               </span>
             </button>
